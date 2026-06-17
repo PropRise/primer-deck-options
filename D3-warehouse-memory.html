@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primer — D3 · Memory / warehouse hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body class="slide-host">
+<section class="stage bg-bgdark text-white">
+  <img src="assets/corner-mark.svg" class="corner" alt="">
+
+  <!-- eyebrow + headline in dark treatment -->
+  <div class="b left-[65.3px] top-[18.2px] eyebrow text-[18.7px] tr-179" style="color:#7ECFC5;">THE INTELLIGENCE</div>
+  <h2 class="b left-[65.3px] top-[58px] w-[1100px] title text-[44px] text-white">Primer checks the numbers, flags what's off, and remembers every deal.</h2>
+
+  <!-- ── Three capability tiles across top ── -->
+
+  <!-- Tile 1: Validates -->
+  <div class="b left-[65px] top-[178px] w-[356px] h-[156px] rounded-[4px] border border-white/15" style="background:rgba(255,255,255,0.06);">
+    <span class="absolute left-0 top-0 h-full w-[5px] rounded-l" style="background:#5BB5A7;"></span>
+    <div class="pl-4 pr-4 pt-3.5">
+      <div class="text-[13px] font-bold uppercase tracking-wide" style="color:#7ECFC5;">Validates across sources</div>
+      <div class="mt-1.5 text-[12px] leading-snug" style="color:rgba(255,255,255,0.70);">OM, T-12, and rent roll reconciled into one trusted number — sourced to the signed rent roll, not the broker's cover sheet.</div>
+      <div class="mt-2.5 flex items-center gap-2 text-[11px]">
+        <span class="font-mono px-1.5 py-0.5 rounded" style="background:rgba(255,255,255,0.10); color:rgba(255,255,255,0.55);">OM $4,490K</span>
+        <span style="color:rgba(255,255,255,0.35);">→</span>
+        <span class="font-mono px-1.5 py-0.5 rounded font-bold" style="background:rgba(44,139,123,0.3); color:#7ECFC5;">RR $4,378K ✓</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tile 2: Flags -->
+  <div class="b left-[437px] top-[178px] w-[356px] h-[156px] rounded-[4px] border border-white/15" style="background:rgba(255,255,255,0.06);">
+    <span class="absolute left-0 top-0 h-full w-[5px] rounded-l" style="background:#C0392B;"></span>
+    <div class="pl-4 pr-4 pt-3.5">
+      <div class="text-[13px] font-bold uppercase tracking-wide" style="color:#F08080;">Flags the anomalies</div>
+      <div class="mt-1.5 text-[12px] leading-snug" style="color:rgba(255,255,255,0.70);">Three flags on The Jasmine — missing tax line, no management fee, insurance not broken out. Each surfaced before the model is downloaded.</div>
+      <div class="mt-2.5 flex flex-col gap-1">
+        <div class="flex items-center gap-1.5 text-[10.5px] font-bold" style="color:#F08080;"><span>⚠</span>TAXES NOT BROKEN OUT <span class="ml-auto text-[9px] px-1.5 py-[1px] rounded border" style="border-color:#C0392B; background:rgba(192,57,43,0.2);">Risk</span></div>
+        <div class="flex items-center gap-1.5 text-[10.5px] font-bold" style="color:#F08080;"><span>⚠</span>MANAGEMENT FEE NOT IN T-12 <span class="ml-auto text-[9px] px-1.5 py-[1px] rounded border" style="border-color:#C0392B; background:rgba(192,57,43,0.2);">Risk</span></div>
+        <div class="flex items-center gap-1.5 text-[10.5px] font-bold" style="color:#F08080;"><span>⚠</span>INSURANCE NOT BROKEN OUT <span class="ml-auto text-[9px] px-1.5 py-[1px] rounded border" style="border-color:#C0392B; background:rgba(192,57,43,0.2);">Risk</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tile 3: Shows its work -->
+  <div class="b left-[809px] top-[178px] w-[406px] h-[156px] rounded-[4px] border border-white/15" style="background:rgba(255,255,255,0.06);">
+    <span class="absolute left-0 top-0 h-full w-[5px] rounded-l" style="background:#5BB5A7;"></span>
+    <div class="pl-4 pr-4 pt-3.5">
+      <div class="text-[13px] font-bold uppercase tracking-wide" style="color:#7ECFC5;">Shows its work</div>
+      <div class="mt-1.5 text-[12px] leading-snug" style="color:rgba(255,255,255,0.70);">Every cell carries a citation back to its source document, page, and table. An extraction report logs every decision Primer made.</div>
+      <div class="mt-2.5 flex gap-1.5 flex-wrap">
+        <span class="font-mono text-[10.5px] px-2 py-0.5 rounded border" style="background:rgba(44,139,123,0.25); border-color:rgba(94,190,175,0.35); color:#7ECFC5;">Rent Roll · p.4</span>
+        <span class="font-mono text-[10.5px] px-2 py-0.5 rounded border" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.70);">T-12 · p.38</span>
+        <span class="font-mono text-[10.5px] px-2 py-0.5 rounded border font-bold" style="background:rgba(44,139,123,0.25); border-color:rgba(94,190,175,0.35); color:#7ECFC5;">Reconciled ✓</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Warehouse hero panel ── occupies bottom two-thirds of the slide -->
+  <div class="b left-[65px] top-[352px] w-[1150px] h-[338px] rounded-[6px] border border-white/15 overflow-hidden" style="background:rgba(255,255,255,0.05);">
+
+    <!-- panel header -->
+    <div class="px-5 py-3 border-b border-white/12 flex items-center gap-3" style="background:rgba(255,255,255,0.04);">
+      <div class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5]"></div>
+      <span class="text-[14px] font-bold text-white">Your data warehouse</span>
+      <span class="ml-2 text-[12px]" style="color:rgba(255,255,255,0.45);">Intelligence plan · private to your team</span>
+      <span class="ml-auto text-[12px] font-bold" style="color:#7ECFC5;">1,465 comps and counting</span>
+    </div>
+
+    <!-- main warehouse body: left column (query + answer) + right (dot grid) -->
+    <div class="flex h-[calc(100%-50px)]">
+
+      <!-- left: cross-deal query UI -->
+      <div class="w-[600px] flex-shrink-0 px-6 pt-5 pb-4 flex flex-col">
+        <div class="text-[11.5px] font-semibold uppercase tracking-wide mb-3" style="color:rgba(255,255,255,0.40);">Ask across your history</div>
+
+        <!-- query bubble -->
+        <div class="rounded-[4px] px-4 py-3 mb-3" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12);">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[#7ECFC5] text-[11px]">✦</span>
+            <span class="text-[11px] font-semibold" style="color:rgba(255,255,255,0.50);">Ask Primer</span>
+          </div>
+          <div class="text-[14px] text-white font-medium leading-snug italic">"average insurance per unit on the 15 Phoenix deals we've underwritten"</div>
+        </div>
+
+        <!-- answer -->
+        <div class="rounded-[4px] px-4 py-3 mb-3" style="background:rgba(44,139,123,0.18); border:1px solid rgba(44,139,123,0.35);">
+          <div class="text-[13px] font-bold text-white mb-0.5">$487 / unit / year</div>
+          <div class="text-[12px]" style="color:rgba(255,255,255,0.60);">Across 15 Phoenix deals · 4,230 units · range $412–$561</div>
+          <div class="mt-1.5 text-[11px]" style="color:rgba(255,255,255,0.50);">Sources: T-12 expense lines, 15 deals · last run 2026-06-14</div>
+        </div>
+
+        <!-- what the warehouse stores -->
+        <div class="text-[12px] leading-relaxed" style="color:rgba(255,255,255,0.55);">Every deal contributes: rent comps, sales comps, expense comps, source docs, custom flags, assumptions, and model outputs — a private database that gets sharper with every underwrite.</div>
+      </div>
+
+      <!-- divider -->
+      <div class="w-px self-stretch my-4" style="background:rgba(255,255,255,0.10);"></div>
+
+      <!-- right: comp dot grid -->
+      <div class="flex-1 px-6 pt-5 pb-4">
+        <div class="text-[11.5px] font-semibold uppercase tracking-wide mb-4" style="color:rgba(255,255,255,0.40);">1,465 comps · across your deal history</div>
+
+        <!-- dot grid: 10 cols × 6 rows, each dot = a comp cluster -->
+        <div class="grid gap-y-[10px] gap-x-[10px]" style="grid-template-columns: repeat(16,1fr);">
+          <!-- Row 1 -->
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.9;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.90;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.60;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.60;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <!-- Row 2 -->
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.90;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.60;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.90;"></span>
+          <!-- Row 3 -->
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.60;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.90;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.60;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.70;"></span>
+          <!-- Row 4 -->
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.90;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.60;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.90;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.60;"></span>
+          <!-- Row 5 -->
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.60;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.90;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.75;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.80;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.65;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.70;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.85;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#E07A3E; opacity:0.55;"></span>
+          <span class="w-[16px] h-[16px] rounded-full inline-block" style="background:#7ECFC5; opacity:0.80;"></span>
+        </div>
+
+        <!-- legend -->
+        <div class="mt-3 flex items-center gap-4 text-[11px]" style="color:rgba(255,255,255,0.45);">
+          <div class="flex items-center gap-1.5"><span class="w-[8px] h-[8px] rounded-full inline-block bg-[#7ECFC5]"></span>Multifamily / Storage</div>
+          <div class="flex items-center gap-1.5"><span class="w-[8px] h-[8px] rounded-full inline-block bg-[#E07A3E]"></span>Office / Industrial</div>
+          <span class="ml-auto">Each dot = a deal in your history</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+</body>
+</html>

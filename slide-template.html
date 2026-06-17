@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ============================================================
+     START A NEW OPTION
+     1. Copy this file:   cp slide-template.html E1-my-idea.html
+     2. Build your slide inside the <section class="stage"> below.
+        Keep the 1280×720 frame. Place things with:
+          <div class="b left-[65.3px] top-[58px] w-[980px]">…</div>
+        Use the palette tokens (bg-bgdark, text-teal, font-serif…)
+        defined in theme.js. Full rules: DESIGN.md.
+     3. Register it: add one entry to slides.json under the right
+        slide letter (or add a new slide). It then appears in the
+        gallery (index.html) automatically.
+     4. Preview: open index.html through a local server, or push
+        and check the GitHub Pages link. Then open a PR.
+     Your own Claude Code can do steps 2–3 if you point it at
+     DESIGN.md and an existing slide (e.g. A1-statement-pillars.html).
+============================================================ -->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primer — new option</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body class="slide-host">
+
+<section class="stage bg-paper text-ink">
+  <img src="assets/corner-mark.svg" class="corner" alt="">
+
+  <!-- Eyebrow: short, uppercase, tracked. -->
+  <div class="b left-[65.3px] top-[18.2px] eyebrow text-[18.7px] tr-179">SECTION LABEL</div>
+
+  <!-- Headline: serif, one idea, ≤ 2 lines. -->
+  <h2 class="b left-[65.3px] top-[58px] w-[980px] title text-[48px]">Your headline goes here,<br>kept to one clear idea.</h2>
+
+  <!-- Supporting line. -->
+  <p class="b left-[65.3px] top-[184px] w-[900px] text-body text-[18.7px] leading-[1.48]">One or two sentences of plain support. Specific beats vague. No staccato fragments, no rhetorical question-and-answer, no three-word endings — see DESIGN.md.</p>
+
+  <!-- Build the rest of the slide here. Copy patterns from an
+       existing option rather than inventing new ones. -->
+
+</section>
+
+</body>
+</html>

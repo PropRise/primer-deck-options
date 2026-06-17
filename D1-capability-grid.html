@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primer — D1 · 2×2 capability grid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body class="slide-host">
+<section class="stage bg-paper text-ink">
+  <img src="assets/corner-mark.svg" class="corner" alt="">
+  <div class="b left-[65.3px] top-[18.2px] eyebrow text-[18.7px] tr-179">THE INTELLIGENCE</div>
+  <h2 class="b left-[65.3px] top-[58px] w-[1100px] title text-[44px]">Primer checks the numbers, flags what's off, and remembers every deal.</h2>
+
+  <!-- 2×2 grid container — starts at y=172, ends at y=700 -->
+  <!-- Top-left: Validates across sources -->
+  <div class="b left-[65px] top-[172px] w-[572px] h-[256px] bg-white border border-line rounded-[3px]">
+    <span class="absolute left-[-5.4px] top-0 h-full w-[6.4px] bg-tealbar rounded-l"></span>
+    <div class="pl-5 pr-5 pt-4">
+      <div class="text-[15px] font-bold text-teal tr-107 uppercase tracking-wide">Validates across sources</div>
+      <div class="mt-1 text-[13px] text-body leading-snug">When the OM, T-12, and rent roll disagree, Primer reconciles them and tells you which it trusted. Never the broker number.</div>
+      <!-- mini reconciliation visual -->
+      <div class="mt-3 flex items-center gap-2">
+        <div class="flex-1 bg-[#FEF9F0] border border-[#E8D8B4] rounded-[3px] px-2.5 py-2">
+          <div class="text-[10px] font-semibold text-warn uppercase tracking-wide mb-1">OM (broker)</div>
+          <div class="font-mono text-[13px] text-ink line-through text-muted">$4,490,000</div>
+        </div>
+        <div class="flex-1 bg-[#FEF9F0] border border-[#E8D8B4] rounded-[3px] px-2.5 py-2">
+          <div class="text-[10px] font-semibold text-warn uppercase tracking-wide mb-1">T-12</div>
+          <div class="font-mono text-[13px] text-ink line-through text-muted">$4,412,000</div>
+        </div>
+        <svg class="w-5 h-5 flex-shrink-0 text-teal" fill="none" viewBox="0 0 20 20"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="flex-1 bg-tint border border-teal/30 rounded-[3px] px-2.5 py-2">
+          <div class="text-[10px] font-semibold text-teal uppercase tracking-wide mb-1">Rent Roll ✓</div>
+          <div class="font-mono text-[13px] font-bold text-ink">$4,378,440</div>
+        </div>
+      </div>
+      <div class="mt-2 text-[11px] text-muted italic">Primer trusted the signed rent roll; OM overstated by ~$111K gross.</div>
+    </div>
+  </div>
+
+  <!-- Top-right: Flags the anomalies -->
+  <div class="b left-[651px] top-[172px] w-[564px] h-[256px] bg-white border border-line rounded-[3px]">
+    <span class="absolute left-[-5.4px] top-0 h-full w-[6.4px] bg-tealbar rounded-l"></span>
+    <div class="pl-5 pr-5 pt-4">
+      <div class="text-[15px] font-bold text-teal tr-107 uppercase tracking-wide">Flags the anomalies</div>
+      <div class="mt-1 text-[13px] text-body leading-snug">Unit-mix mismatches, coding errors, missing lines — surfaced before you download the model.</div>
+      <!-- 3 real flag cards, compact -->
+      <div class="mt-2.5 space-y-1.5">
+        <div class="bg-riskbg border border-[#F3D6D1] border-l-[3px] border-l-riskline rounded-[3px] px-3 py-1.5 flex items-start justify-between gap-2">
+          <div class="flex items-center gap-1.5 text-risk font-bold text-[10.5px] tracking-wide"><span>⚠</span>TAXES NOT BROKEN OUT</div>
+          <span class="text-[9px] font-bold text-risk bg-white/70 border border-[#F3D6D1] px-1.5 py-[1px] rounded flex-shrink-0">Risk</span>
+        </div>
+        <div class="bg-riskbg border border-[#F3D6D1] border-l-[3px] border-l-riskline rounded-[3px] px-3 py-1.5 flex items-start justify-between gap-2">
+          <div class="flex items-center gap-1.5 text-risk font-bold text-[10.5px] tracking-wide"><span>⚠</span>MANAGEMENT FEE NOT IN T-12</div>
+          <span class="text-[9px] font-bold text-risk bg-white/70 border border-[#F3D6D1] px-1.5 py-[1px] rounded flex-shrink-0">Risk</span>
+        </div>
+        <div class="bg-riskbg border border-[#F3D6D1] border-l-[3px] border-l-riskline rounded-[3px] px-3 py-1.5 flex items-start justify-between gap-2">
+          <div class="flex items-center gap-1.5 text-risk font-bold text-[10.5px] tracking-wide"><span>⚠</span>INSURANCE NOT BROKEN OUT</div>
+          <span class="text-[9px] font-bold text-risk bg-white/70 border border-[#F3D6D1] px-1.5 py-[1px] rounded flex-shrink-0">Risk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom-left: Shows its work -->
+  <div class="b left-[65px] top-[440px] w-[572px] h-[256px] bg-white border border-line rounded-[3px]">
+    <span class="absolute left-[-5.4px] top-0 h-full w-[6.4px] bg-tealbar rounded-l"></span>
+    <div class="pl-5 pr-5 pt-4">
+      <div class="text-[15px] font-bold text-teal tr-107 uppercase tracking-wide">Shows its work</div>
+      <div class="mt-1 text-[13px] text-body leading-snug">An extraction report of every decision, plus a citation on every cell. Click any number; see the source.</div>
+      <!-- cell + citation chips -->
+      <div class="mt-3 bg-[#F4F7F5] border border-line rounded-[3px] px-3 py-2.5">
+        <div class="flex items-center justify-between">
+          <div class="text-[11px] text-muted font-semibold uppercase tracking-wide">In-Place Gross Revenue</div>
+          <span class="font-mono text-[13px] font-bold text-ink">$4,378,440</span>
+        </div>
+        <div class="mt-2 flex items-center gap-1.5 flex-wrap">
+          <span class="text-[10px] text-muted">Source:</span>
+          <span class="font-mono text-[11px] bg-white text-teal border border-teal/30 px-2 py-0.5 rounded">Rent Roll · p.4</span>
+          <span class="font-mono text-[11px] bg-white text-ink border border-line px-2 py-0.5 rounded">T-12 · p.38</span>
+          <span class="font-mono text-[11px] bg-tint text-teal border border-teal/30 px-2 py-0.5 rounded font-semibold">Reconciled ✓</span>
+        </div>
+      </div>
+      <div class="mt-2.5 flex items-start gap-2">
+        <div class="text-[11.5px] text-body leading-snug">Every extraction decision is logged: what Primer found, what conflicted, and which source it used.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom-right: Remembers every deal -->
+  <div class="b left-[651px] top-[440px] w-[564px] h-[256px] bg-bgdark text-white rounded-[3px]">
+    <span class="absolute left-0 top-0 h-full w-[6px] rounded-l" style="background:#5BB5A7;"></span>
+    <div class="pl-5 pr-5 pt-4">
+      <div class="text-[15px] font-bold text-[#7ECFC5] tr-107 uppercase tracking-wide">Remembers every deal</div>
+      <div class="mt-1 text-[13px] text-white/75 leading-snug">Ask across your whole history — every deal you run is saved and informs the next.</div>
+      <!-- warehouse dots motif + query -->
+      <div class="mt-3 bg-white/8 border border-white/15 rounded-[4px] px-3 py-2.5" style="background:rgba(255,255,255,0.07);">
+        <div class="text-[10px] font-semibold text-[#7ECFC5] uppercase tracking-wide mb-1.5">Ask Primer ✦</div>
+        <div class="text-[12px] text-white/85 italic leading-snug">"average insurance per unit on the 15 Phoenix deals we've underwritten"</div>
+        <div class="mt-2 text-[12px] font-bold text-white">$487 / unit / year <span class="text-[11px] font-normal text-white/60 ml-1">across 15 deals · 4,230 units</span></div>
+      </div>
+      <!-- comp dots -->
+      <div class="mt-3 flex items-center justify-between">
+        <div>
+          <div class="font-serif font-bold text-[32px] leading-none text-white">1,465</div>
+          <div class="text-[11px] text-white/55 mt-0.5">comps and counting</div>
+        </div>
+        <div class="relative w-[220px] h-[52px]">
+          <!-- dot grid representing deals/comps -->
+          <div class="absolute inset-0 rounded-[4px]" style="background:rgba(255,255,255,0.05);"></div>
+          <!-- row of dots, 3 rows -->
+          <div class="absolute top-[8px] left-[10px] flex gap-[6px]">
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-90 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-80 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-70 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#E07A3E] opacity-90 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-60 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-85 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#E07A3E] opacity-75 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-70 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-55 inline-block"></span>
+          </div>
+          <div class="absolute top-[22px] left-[10px] flex gap-[6px]">
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-55 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#E07A3E] opacity-80 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-75 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-90 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-65 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-80 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#E07A3E] opacity-60 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-70 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-85 inline-block"></span>
+          </div>
+          <div class="absolute top-[36px] left-[10px] flex gap-[6px]">
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-70 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-60 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#E07A3E] opacity-85 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-80 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-55 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-75 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-90 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#E07A3E] opacity-70 inline-block"></span>
+            <span class="w-[8px] h-[8px] rounded-full bg-[#7ECFC5] opacity-65 inline-block"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

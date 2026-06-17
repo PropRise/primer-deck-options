@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primer — Platform Slide Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0E1B17; --panel:#152A24; --teal:#2C8B7B; --teal2:#7ECFC5; --line:rgba(255,255,255,0.12); --ink:#F4F7F5; --muted:#9DB3AC; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1340px; margin:0 auto; padding:44px 32px 90px; }
+  a { color:var(--teal2); }
+  .eyebrow { color:var(--teal2); font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-weight:700; font-size:42px; margin:8px 0 8px; letter-spacing:-0.01em; }
+  .sub { color:var(--muted); font-size:15.5px; max-width:860px; line-height:1.55; }
+  .toolbar { margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; }
+  .toolbar a { display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:500; color:var(--ink); text-decoration:none; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 13px; }
+  .toolbar a:hover { border-color:var(--teal); }
+  .slide-sec { margin-top:46px; }
+  .slide-head { display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line); padding-bottom:11px; margin-bottom:20px; flex-wrap:wrap; }
+  .slide-head h2 { font-family:'Playfair Display',serif; font-size:25px; margin:0; font-weight:700; }
+  .slide-head .desc { color:var(--muted); font-size:14px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:1000px){ .grid { grid-template-columns:1fr; max-width:560px; } }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; transition:border-color .15s, transform .15s; }
+  .card:hover { border-color:var(--teal); transform:translateY(-2px); }
+  .card.rec { border-color:var(--teal); box-shadow:0 0 0 1px var(--teal); }
+  .card-lab { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:13px 15px 11px; }
+  .card-lab .name { font-weight:600; font-size:14.5px; line-height:1.25; }
+  .card-lab .name small { display:block; color:var(--muted); font-weight:400; font-size:12px; margin-top:3px; }
+  .badge { font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#06251E; background:var(--teal2); padding:3px 8px; border-radius:999px; white-space:nowrap; margin-top:1px; }
+  a.thumb { display:block; position:relative; aspect-ratio:1280/720; overflow:hidden; background:#fff; border-top:1px solid var(--line); }
+  a.thumb iframe { position:absolute; top:0; left:0; width:1280px; height:720px; border:0; transform-origin:top left; pointer-events:none; }
+  a.thumb .open { position:absolute; right:9px; bottom:9px; background:rgba(8,20,16,.82); color:#fff; font-size:11px; font-weight:500; padding:4px 9px; border-radius:6px; opacity:0; transition:opacity .15s; }
+  a.thumb:hover .open { opacity:1; }
+  .vote { font-size:11.5px; color:var(--muted); padding:9px 15px 13px; border-top:1px solid var(--line); }
+  .vote code { color:var(--teal2); }
+  footer { margin-top:58px; color:var(--muted); font-size:13.5px; border-top:1px solid var(--line); padding-top:22px; line-height:1.65; }
+  footer code { color:var(--teal2); background:rgba(126,207,197,0.1); padding:1px 6px; border-radius:4px; font-size:12.5px; }
+  footer b { color:var(--ink); font-weight:600; }
+  .err { color:#E0A0A0; font-size:14px; margin-top:24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Primer · Sales deck</div>
+    <h1>Platform slide options</h1>
+    <p class="sub">Four new slides to replace the old "How Boardwalk" step — <strong>Overview</strong>, <strong>Flow</strong>, the <strong>Input sheet</strong>, and the <strong>Intelligence</strong>. Three design options each. Click any thumbnail to open it full-screen at 1280×720 (true deck size). The option outlined in teal is the current recommendation for that slide.</p>
+    <div class="toolbar">
+      <a href="https://github.com/jeanmichaeldiei/primer-deck-options" target="_blank" rel="noopener">↗ Repo</a>
+      <a href="https://github.com/jeanmichaeldiei/primer-deck-options/issues" target="_blank" rel="noopener">🗳 Vote / discuss</a>
+      <a href="https://github.com/jeanmichaeldiei/primer-deck-options/blob/main/DESIGN.md" target="_blank" rel="noopener">🎨 Design language</a>
+      <a href="https://github.com/jeanmichaeldiei/primer-deck-options/blob/main/README.md" target="_blank" rel="noopener">＋ Add your own option</a>
+    </div>
+  </header>
+  <div id="root"></div>
+  <footer id="foot"></footer>
+</div>
+<script>
+function render(data){
+  const root = document.getElementById('root');
+  (data.slides || []).forEach(s => {
+    const sec = document.createElement('div'); sec.className = 'slide-sec';
+    sec.innerHTML = `<div class="slide-head"><h2>Slide ${s.slide} — ${s.title}</h2><span class="desc">${s.desc||''}</span></div>`;
+    const grid = document.createElement('div'); grid.className = 'grid';
+    (s.options || []).forEach(o => {
+      const card = document.createElement('div'); card.className = 'card' + (o.recommended ? ' rec' : '');
+      card.innerHTML =
+        `<div class="card-lab"><div class="name">${o.code} · ${o.name}<small>${o.sub||''}</small></div>${o.recommended ? '<span class="badge">Recommended</span>' : ''}</div>` +
+        `<a class="thumb" href="${o.file}" target="_blank" rel="noopener">` +
+        `<iframe src="${o.file}" scrolling="no" loading="lazy" title="${o.code}"></iframe>` +
+        `<span class="open">Open full-screen ↗</span></a>` +
+        `<div class="vote">Vote: 👍 the <code>${o.code}</code> comment in the slide-${s.slide} issue</div>`;
+      grid.appendChild(card);
+    });
+    sec.appendChild(grid); root.appendChild(sec);
+  });
+  const arc = (data.recommendedArc || []).join(' → ');
+  document.getElementById('foot').innerHTML =
+    (arc ? `Current recommended arc: <code>${arc}</code>.<br>` : '') +
+    `<b>To vote</b> — open the <a href="https://github.com/jeanmichaeldiei/primer-deck-options/issues" target="_blank" rel="noopener">issues</a> and 👍 the option you like for each slide. ` +
+    `<b>To propose a new option</b> — copy <code>slide-template.html</code>, build it (your own Claude Code can follow <code>DESIGN.md</code>), add one line to <code>slides.json</code>, and open a PR. It shows up here automatically.`;
+  rescale();
+}
+function rescale(){
+  document.querySelectorAll('a.thumb').forEach(t => {
+    const f = t.querySelector('iframe');
+    if (f) f.style.transform = 'scale(' + (t.clientWidth / 1280) + ')';
+  });
+}
+window.addEventListener('resize', rescale);
+window.addEventListener('load', rescale);
+document.addEventListener('load', e => { if (e.target.tagName === 'IFRAME') rescale(); }, true);
+setTimeout(rescale, 60); setTimeout(rescale, 500); setTimeout(rescale, 1500);
+
+fetch('slides.json', { cache: 'no-store' })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(render)
+  .catch(err => {
+    document.getElementById('root').innerHTML =
+      `<p class="err">Couldn't load <code>slides.json</code> (${err.message}). Open this page through a web server (e.g. the GitHub Pages link), not as a <code>file://</code> path.</p>`;
+  });
+</script>
+</body>
+</html>

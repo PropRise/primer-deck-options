@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primer — C3 · Excel workbook view</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body class="slide-host">
+<section class="stage bg-paper text-ink">
+  <img src="assets/corner-mark.svg" class="corner" alt="">
+
+  <div class="b left-[65.3px] top-[18.2px] eyebrow text-[18.7px] tr-179">THE INPUT SHEET</div>
+  <h2 class="b left-[65.3px] top-[54px] w-[900px] title text-[44px]">Everything Primer does lands on one sheet — the Primer input.</h2>
+  <div class="b left-[65.3px] top-[156px] w-[860px] text-body text-[15px] leading-snug">A structured tab Primer writes into your workbook — rent roll, T-12, comps, property and tax facts — each in a fixed place your model already points to.</div>
+
+  <!-- ── MAIN VISUAL: Stylized Excel workbook ── -->
+  <div class="b" style="left:65px; top:200px; width:790px;">
+
+    <!-- Workbook window chrome -->
+    <div class="bg-[#217346] rounded-t-[7px] px-4 py-2 flex items-center gap-2">
+      <div class="flex gap-1.5">
+        <div class="w-3 h-3 rounded-full bg-white/30"></div>
+        <div class="w-3 h-3 rounded-full bg-white/30"></div>
+        <div class="w-3 h-3 rounded-full bg-white/30"></div>
+      </div>
+      <span class="text-white text-[12px] font-semibold ml-2">GoldRockModel_v12.xlsx</span>
+    </div>
+
+    <!-- Formula bar -->
+    <div class="bg-[#F3F4F2] border-x border-b border-[#C5C9C7] px-3 py-1.5 flex items-center gap-2 text-[11.5px]">
+      <span class="text-muted font-medium w-[28px] text-center border border-line bg-white px-1 rounded">A1</span>
+      <span class="text-muted">fx</span>
+      <code class="font-mono text-[11.5px] text-teal bg-white border border-line px-2 py-0.5 rounded">='Primer Input'!BY2</code>
+      <span class="ml-auto text-[10.5px] text-muted italic">SUMMARY tab ·  references Primer Input</span>
+    </div>
+
+    <!-- Worksheet grid area (the active tab is SUMMARY — showing formula references) -->
+    <div class="border-x border-b border-[#C5C9C7] bg-white">
+      <!-- Col headers A–E -->
+      <div class="flex bg-[#F3F4F2] border-b border-[#C5C9C7]">
+        <div class="w-[28px] border-r border-[#C5C9C7]"></div>
+        <div class="flex-1 text-center text-[10.5px] text-muted font-medium py-1 border-r border-[#C5C9C7]" style="width:180px">A</div>
+        <div class="flex-1 text-center text-[10.5px] text-muted font-medium py-1 border-r border-[#C5C9C7]" style="width:130px">B</div>
+        <div class="flex-1 text-center text-[10.5px] text-muted font-medium py-1 border-r border-[#C5C9C7]" style="width:130px">C</div>
+        <div class="flex-1 text-center text-[10.5px] text-muted font-medium py-1" style="width:130px">D</div>
+      </div>
+      <!-- Rows -->
+      <div class="text-[11.5px]">
+        <!-- Row 1 -->
+        <div class="flex border-b border-[#E8ECEB]">
+          <div class="w-[28px] text-center text-[10px] text-muted bg-[#F3F4F2] border-r border-[#C5C9C7] py-1.5 shrink-0">1</div>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2 font-semibold text-muted" style="width:180px">Deal Name</div>
+          <td class="border-r border-[#E8ECEB] py-1.5 px-2 font-mono text-[10.5px] text-teal bg-[#F0FAF8]" style="width:130px;display:table-cell">='Primer Input'!BY2</td>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2" style="width:130px"></div>
+          <div class="py-1.5 px-2" style="width:130px"></div>
+        </div>
+        <!-- Row 2 -->
+        <div class="flex border-b border-[#E8ECEB] bg-[#F8FAFA]">
+          <div class="w-[28px] text-center text-[10px] text-muted bg-[#F3F4F2] border-r border-[#C5C9C7] py-1.5 shrink-0">2</div>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2 font-semibold text-muted" style="width:180px">City, State</div>
+          <td class="border-r border-[#E8ECEB] py-1.5 px-2 font-mono text-[9.5px] text-teal bg-[#F0FAF8]" style="width:130px;display:table-cell">='Primer Input'!BY3&amp;", "&amp;BY4</td>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2" style="width:130px"></div>
+          <div class="py-1.5 px-2" style="width:130px"></div>
+        </div>
+        <!-- Row 3 -->
+        <div class="flex border-b border-[#E8ECEB]">
+          <div class="w-[28px] text-center text-[10px] text-muted bg-[#F3F4F2] border-r border-[#C5C9C7] py-1.5 shrink-0">3</div>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2 font-semibold text-muted" style="width:180px">Avg In-Place Rent</div>
+          <td class="border-r border-[#E8ECEB] py-1.5 px-2 font-mono text-[10.5px] text-teal bg-[#F0FAF8]" style="width:130px;display:table-cell">='Primer Input'!BY12</td>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2" style="width:130px"></div>
+          <div class="py-1.5 px-2" style="width:130px"></div>
+        </div>
+        <!-- Row 4 -->
+        <div class="flex border-b border-[#E8ECEB] bg-[#F8FAFA]">
+          <div class="w-[28px] text-center text-[10px] text-muted bg-[#F3F4F2] border-r border-[#C5C9C7] py-1.5 shrink-0">4</div>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2 font-semibold text-muted" style="width:180px">NOI (T-12)</div>
+          <td class="border-r border-[#E8ECEB] py-1.5 px-2 font-mono text-[10.5px] text-teal bg-[#F0FAF8]" style="width:130px;display:table-cell">=+'RENT CALCS'!E7</td>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2" style="width:130px"></div>
+          <div class="py-1.5 px-2" style="width:130px"></div>
+        </div>
+        <!-- Row 5 -->
+        <div class="flex">
+          <div class="w-[28px] text-center text-[10px] text-muted bg-[#F3F4F2] border-r border-[#C5C9C7] py-1.5 shrink-0">5</div>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2 font-semibold text-muted" style="width:180px">Vacancy Rate</div>
+          <td class="border-r border-[#E8ECEB] py-1.5 px-2 font-mono text-[10.5px] text-teal bg-[#F0FAF8]" style="width:130px;display:table-cell">='Primer Input'!BY8</td>
+          <div class="border-r border-[#E8ECEB] py-1.5 px-2" style="width:130px"></div>
+          <div class="py-1.5 px-2" style="width:130px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sheet tab row -->
+    <div class="flex items-end border-x border-b border-[#C5C9C7] bg-[#F3F4F2] px-2 pt-1.5 pb-1 gap-[2px] rounded-b-[7px]">
+      <!-- SUMMARY — active/selected: the tab shown in the grid above -->
+      <div class="px-3 py-1.5 bg-white text-ink font-bold rounded-t-[4px] text-[11.5px] whitespace-nowrap border border-b-0 border-[#C5C9C7] shrink-0" style="border-top:2px solid #2C8B7B;">SUMMARY</div>
+      <!-- Customer's other model tabs — greyed, untouched -->
+      <div class="px-2.5 py-1.5 bg-white/80 text-muted rounded-t-[4px] text-[11px] whitespace-nowrap border border-line border-b-0 shrink-0">NOI</div>
+      <div class="px-2.5 py-1.5 bg-white/80 text-muted rounded-t-[4px] text-[11px] whitespace-nowrap border border-line border-b-0 shrink-0">RENT CALCS</div>
+      <div class="px-2.5 py-1.5 bg-white/80 text-muted rounded-t-[4px] text-[11px] whitespace-nowrap border border-line border-b-0 shrink-0">ACQ BUDGET</div>
+      <div class="px-2.5 py-1.5 bg-white/80 text-muted rounded-t-[4px] text-[11px] whitespace-nowrap border border-line border-b-0 shrink-0">ANNUAL PRO FORMA</div>
+      <!-- Primer Input — the one tab Primer writes -->
+      <div class="px-3 py-1.5 bg-teal text-white font-bold rounded-t-[4px] text-[11.5px] whitespace-nowrap border border-teal shrink-0 ml-[3px]">Primer Input</div>
+      <!-- Inline callout pointing back at the Primer Input tab -->
+      <div class="flex items-center gap-[5px] ml-[8px] pb-[3px] text-teal text-[10.5px] font-semibold whitespace-nowrap">
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M15 5H2.5" stroke="#2C8B7B" stroke-width="1.5" stroke-linecap="round"/><path d="M6 1.5L2 5l4 3.5" stroke="#2C8B7B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        the one tab Primer writes
+      </div>
+    </div>
+    <!-- caption: customer formulas untouched -->
+    <div class="mt-2 text-[11px] text-muted italic">Your tabs and formulas stay exactly as they are — Primer writes only the Primer Input tab.</div>
+  </div>
+
+  <!-- ── RIGHT COLUMN: 255 stat + 3 points ── -->
+  <div class="b" style="left:888px; top:200px; width:324px;">
+
+    <!-- 255 stat -->
+    <div class="bg-tint border border-[#B8DDD7] rounded-[7px] px-5 py-4 mb-4">
+      <div class="font-serif font-bold text-ink text-[52px] leading-none">255</div>
+      <div class="text-[13px] text-body mt-1 leading-snug">formulas in this model pull from one tab — the Primer Input.</div>
+    </div>
+
+    <!-- 3 remaining points as cards with teal nub -->
+    <div class="space-y-3">
+      <!-- Point 1 -->
+      <div class="relative bg-white border border-line rounded-[2px] px-4 py-3">
+        <span class="absolute left-[-5.4px] top-0 h-full w-[6.4px] bg-tealbar rounded-l"></span>
+        <div class="text-[13px] font-bold text-ink leading-tight">Structured the same way, every time</div>
+        <p class="mt-1 text-[12px] text-body leading-snug">Your model references it by cell, so a new deal just drops in and flows through.</p>
+      </div>
+      <!-- Point 2 -->
+      <div class="relative bg-white border border-line rounded-[2px] px-4 py-3">
+        <span class="absolute left-[-5.4px] top-0 h-full w-[6.4px] bg-tealbar rounded-l"></span>
+        <div class="text-[13px] font-bold text-ink leading-tight">Customizable to your process</div>
+        <p class="mt-1 text-[12px] text-body leading-snug">Add a column or ask in plain English: "show new vs. renewal rent by unit type."</p>
+      </div>
+      <!-- Point 3 -->
+      <div class="relative bg-white border border-line rounded-[2px] px-4 py-3">
+        <span class="absolute left-[-5.4px] top-0 h-full w-[6.4px] bg-tealbar rounded-l"></span>
+        <div class="text-[13px] font-bold text-ink leading-tight">Works across any asset class</div>
+        <p class="mt-1 text-[12px] text-body leading-snug">Multifamily, storage, office, retail. Same input sheet, your fields.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transition line -->
+  <div class="b left-[65px] text-muted text-[12.5px] italic" style="top:697px;">This is the sheet we'll open together next.</div>
+
+</section>
+</body>
+</html>

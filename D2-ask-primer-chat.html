@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primer — D2 · "Ask Primer" chat hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body class="slide-host">
+<section class="stage bg-paper text-ink">
+  <img src="assets/corner-mark.svg" class="corner" alt="">
+  <div class="b left-[65.3px] top-[18.2px] eyebrow text-[18.7px] tr-179">THE INTELLIGENCE</div>
+  <h2 class="b left-[65.3px] top-[58px] w-[950px] title text-[44px]">Primer checks the numbers, flags what's off, and remembers every deal.</h2>
+
+  <!-- Left panel: Ask Primer chat — spans ~55% width -->
+  <div class="b left-[65px] top-[156px] w-[680px] h-[502px] bg-white border border-line rounded-[6px] overflow-hidden shadow-sm">
+    <!-- panel header -->
+    <div class="px-4 py-2.5 border-b border-line flex items-center gap-2 bg-[#F7FAF8]">
+      <span class="text-teal text-[14px]">✦</span>
+      <span class="text-[13.5px] font-bold text-ink">Ask Primer</span>
+      <div class="ml-auto flex gap-1.5">
+        <span class="bg-tint text-teal text-[10.5px] px-2 py-0.5 rounded font-medium">@Pipeline · Multifamily Dallas</span>
+        <span class="bg-tint text-teal text-[10.5px] px-2 py-0.5 rounded font-medium">@The Jasmine</span>
+        <span class="bg-tint text-teal text-[10.5px] px-2 py-0.5 rounded font-medium">@The Jasmine_OM_NorthMarq.pdf</span>
+      </div>
+    </div>
+    <!-- user question -->
+    <div class="px-4 pt-3 pb-2 border-b border-line/60">
+      <div class="text-[13.5px] font-semibold text-ink">any highlights / lowlights for this deal?</div>
+    </div>
+    <!-- AI response -->
+    <div class="px-4 pt-3 pb-3 overflow-hidden">
+      <div class="text-[12px] font-bold text-ink mb-2">The Jasmine — Highlights &amp; Lowlights</div>
+      <div class="text-[12px] text-body leading-[1.5] mb-2.5"><span class="font-semibold text-ink">Bottom line:</span> 1980s North Dallas REO offered below replacement cost — ~40% rent upside but real operational distress. Prior owner basis ~$135K/unit vs ~$225K/unit Dallas replacement cost.</div>
+
+      <div class="text-[11.5px] font-bold text-teal uppercase tracking-wide mb-1.5">Highlights</div>
+      <div class="space-y-1.5 mb-3">
+        <div class="flex gap-2 text-[12px] text-body leading-snug">
+          <span class="text-teal font-bold flex-shrink-0">·</span>
+          <span>Attractive basis — prior owner ~$135K/unit vs ~$225K/unit replacement cost <span class="text-muted font-medium">(p.4)</span></span>
+        </div>
+        <div class="flex gap-2 text-[12px] text-body leading-snug">
+          <span class="text-teal font-bold flex-shrink-0">·</span>
+          <span>Mark-to-market upside — in-place $1,037 vs comp-supported $1,194 <span class="text-muted font-medium">(p.4–5)</span></span>
+        </div>
+        <div class="flex gap-2 text-[12px] text-body leading-snug">
+          <span class="text-teal font-bold flex-shrink-0">·</span>
+          <span>Stacked other-income upside ~$1.69M <span class="text-muted font-medium">(p.4)</span></span>
+        </div>
+      </div>
+
+      <div class="text-[11.5px] font-bold text-warn uppercase tracking-wide mb-1.5">Lowlights</div>
+      <div class="space-y-1.5 mb-3">
+        <div class="flex gap-2 text-[12px] text-body leading-snug">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <span>Operational distress — ~$531K (11.8%) of revenue lost to model/admin units <span class="text-muted font-medium">(p.38)</span></span>
+        </div>
+        <div class="flex gap-2 text-[12px] text-body leading-snug">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <span>Thin in-place cash flow — trailing-12 NOI ~$1.53M ($4,124/unit) <span class="text-muted font-medium">(p.38)</span></span>
+        </div>
+        <div class="flex gap-2 text-[12px] text-body leading-snug">
+          <span class="text-warn font-bold flex-shrink-0">·</span>
+          <span>Aggressive Year-1 assumptions — 19% economic loss <span class="text-muted font-medium">(p.36)</span></span>
+        </div>
+      </div>
+
+      <!-- snapshot table -->
+      <div class="border border-line rounded-[3px] overflow-hidden">
+        <div class="grid grid-cols-3 text-[11px]">
+          <div class="bg-tint px-2.5 py-1.5 font-semibold text-body border-b border-line">Metric</div>
+          <div class="bg-tint px-2.5 py-1.5 font-semibold text-muted border-b border-line border-l border-line">In-Place</div>
+          <div class="bg-tint px-2.5 py-1.5 font-semibold text-teal border-b border-line border-l border-line">Stabilized</div>
+
+          <div class="px-2.5 py-1.5 text-body border-b border-line">Avg Rent/Unit</div>
+          <div class="px-2.5 py-1.5 font-mono text-ink border-b border-l border-line">$1,037</div>
+          <div class="px-2.5 py-1.5 font-mono font-bold text-teal border-b border-l border-line">$1,194</div>
+
+          <div class="px-2.5 py-1.5 text-body border-b border-line">Gross Revenue</div>
+          <div class="px-2.5 py-1.5 font-mono text-ink border-b border-l border-line">~$4.49M</div>
+          <div class="px-2.5 py-1.5 font-mono font-bold text-teal border-b border-l border-line">~$5.36M</div>
+
+          <div class="px-2.5 py-1.5 text-body">NOI</div>
+          <div class="px-2.5 py-1.5 font-mono text-ink border-l border-line">~$1.53M</div>
+          <div class="px-2.5 py-1.5 font-mono font-bold text-teal border-l border-line">~$2.64M</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel: 3 watchlist flag cards stacked -->
+  <div class="b left-[764px] top-[156px] w-[451px]">
+    <div class="text-[12.5px] font-bold text-ink mb-2.5 uppercase tracking-wide">Watchlist — 3 flags on The Jasmine</div>
+    <div class="space-y-3">
+      <!-- Flag 1 -->
+      <div class="bg-riskbg border border-[#F3D6D1] border-l-[3px] border-l-riskline rounded-[4px] px-4 py-3">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2 text-risk font-bold text-[12.5px] tracking-wide"><span>⚠</span>TAXES NOT BROKEN OUT</div>
+          <span class="text-[10px] font-bold text-risk bg-white/70 border border-[#F3D6D1] px-2 py-[2px] rounded">Risk</span>
+        </div>
+        <p class="text-[12px] text-body leading-snug">Real estate taxes are not a separate T-12 line — the buyer inherits the real (and likely reassessed) cost.</p>
+      </div>
+      <!-- Flag 2 -->
+      <div class="bg-riskbg border border-[#F3D6D1] border-l-[3px] border-l-riskline rounded-[4px] px-4 py-3">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2 text-risk font-bold text-[12.5px] tracking-wide"><span>⚠</span>MANAGEMENT FEE NOT IN T-12</div>
+          <span class="text-[10px] font-bold text-risk bg-white/70 border border-[#F3D6D1] px-2 py-[2px] rounded">Risk</span>
+        </div>
+        <p class="text-[12px] text-body leading-snug">No management fee line in the T-12 — likely owner-managed; underwrite a market fee or NOI is overstated.</p>
+      </div>
+      <!-- Flag 3 -->
+      <div class="bg-riskbg border border-[#F3D6D1] border-l-[3px] border-l-riskline rounded-[4px] px-4 py-3">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="flex items-center gap-2 text-risk font-bold text-[12.5px] tracking-wide"><span>⚠</span>INSURANCE NOT BROKEN OUT</div>
+          <span class="text-[10px] font-bold text-risk bg-white/70 border border-[#F3D6D1] px-2 py-[2px] rounded">Risk</span>
+        </div>
+        <p class="text-[12px] text-body leading-snug">Insurance isn't a separate T-12 line — current renewal quotes typically run well above a blended figure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom strip: data warehouse -->
+  <div class="b left-[65px] top-[668px] w-[1150px] h-[38px] bg-bgdark rounded-[3px] flex items-center px-5 gap-4">
+    <span class="text-[#7ECFC5] text-[11.5px]">✦</span>
+    <span class="text-white font-bold text-[12.5px]">Your data warehouse:</span>
+    <span class="text-white/70 text-[12px]">1,465 comps and counting</span>
+    <span class="w-px h-4 bg-white/20"></span>
+    <span class="text-white/70 text-[12px]">every deal you run is saved and informs the next</span>
+    <span class="w-px h-4 bg-white/20"></span>
+    <!-- dot strip -->
+    <div class="flex gap-[5px] items-center">
+      <span class="w-[7px] h-[7px] rounded-full bg-[#7ECFC5] opacity-90 inline-block"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#7ECFC5] opacity-70 inline-block"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#E07A3E] opacity-85 inline-block"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#7ECFC5] opacity-80 inline-block"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#7ECFC5] opacity-60 inline-block"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#E07A3E] opacity-75 inline-block"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#7ECFC5] opacity-85 inline-block"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#7ECFC5] opacity-65 inline-block"></span>
+    </div>
+    <span class="ml-auto text-white/40 text-[11px]">Intelligence plan</span>
+  </div>
+</section>
+</body>
+</html>

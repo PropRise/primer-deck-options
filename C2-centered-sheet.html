@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primer — C2 · Centered sheet + pills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="deck.css">
+</head>
+<body class="slide-host">
+<section class="stage bg-paper text-ink">
+  <img src="assets/corner-mark.svg" class="corner" alt="">
+
+  <div class="b left-[65.3px] top-[18.2px] eyebrow text-[18.7px] tr-179">THE INPUT SHEET</div>
+  <h2 class="b left-[65.3px] top-[54px] w-[1100px] title text-[44px]">Everything Primer does lands on one sheet — the Primer input.</h2>
+  <div class="b left-[65.3px] top-[152px] w-[1050px] text-body text-[15px] leading-snug">A structured tab Primer writes into your workbook — rent roll, T-12, comps, property and tax facts — each in a fixed place your model already points to.</div>
+
+  <!-- ── HERO: Primer Input sheet, large and centered ── -->
+  <div class="b" style="left:262px; top:196px; width:756px;">
+    <div class="bg-white border-2 border-teal shadow-md rounded-[7px] overflow-hidden">
+      <!-- Tab strip — 5 sections, Rent Roll active -->
+      <div class="flex items-end gap-[3px] bg-[#D9EDE9] border-b-2 border-teal text-[12.5px] px-2 pt-2">
+        <div class="px-4 py-2 bg-teal text-white font-bold rounded-t-[5px] whitespace-nowrap text-[13px]">Rent Roll</div>
+        <div class="px-4 py-2 text-body font-medium rounded-t-[4px] bg-white/60 whitespace-nowrap">P&amp;L / T-12</div>
+        <div class="px-4 py-2 text-body font-medium rounded-t-[4px] bg-white/60 whitespace-nowrap">Rent Comps</div>
+        <div class="px-4 py-2 text-body font-medium rounded-t-[4px] bg-white/60 whitespace-nowrap">Property Summary</div>
+        <div class="px-4 py-2 text-body font-medium rounded-t-[4px] bg-white/60 whitespace-nowrap">Taxes</div>
+        <div class="ml-auto pb-1.5 pr-1 text-[10.5px] text-muted italic self-end whitespace-nowrap">82 cols × 217 rows</div>
+      </div>
+      <!-- Grid -->
+      <table class="xl-grid">
+        <thead>
+          <tr>
+            <th style="width:50px">Unit #</th>
+            <th style="width:80px">Status</th>
+            <th style="width:120px">Unit Type</th>
+            <th class="r" style="width:56px">Sq Ft</th>
+            <th style="width:130px">Move In</th>
+            <th class="r" style="width:90px">Base Rent</th>
+            <th class="r" style="width:96px">Market Rent</th>
+            <th class="r" style="width:100px">Rent Gap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>101</td><td class="status-occ">Occupied</td><td>1BR / 1BA</td><td class="r">712</td><td>Jun 2024</td><td class="r">$1,037</td><td class="r">$1,194</td><td class="r" style="color:#C0392B">–$157</td>
+          </tr>
+          <tr>
+            <td>102</td><td class="status-occ">Occupied</td><td>1BR / 1BA</td><td class="r">712</td><td>Mar 2023</td><td class="r">$1,037</td><td class="r">$1,194</td><td class="r" style="color:#C0392B">–$157</td>
+          </tr>
+          <tr>
+            <td>204</td><td class="status-vac">Vacant</td><td>2BR / 2BA</td><td class="r">980</td><td>—</td><td class="r">—</td><td class="r">$1,495</td><td class="r" style="color:#B7791F">n/a</td>
+          </tr>
+          <tr>
+            <td>205</td><td class="status-occ">Occupied</td><td>2BR / 2BA</td><td class="r">980</td><td>Jan 2024</td><td class="r">$1,310</td><td class="r">$1,495</td><td class="r" style="color:#C0392B">–$185</td>
+          </tr>
+          <tr>
+            <td>301</td><td class="status-occ">Occupied</td><td>1BR / 1BA</td><td class="r">712</td><td>Aug 2022</td><td class="r">$1,042</td><td class="r">$1,194</td><td class="r" style="color:#C0392B">–$152</td>
+          </tr>
+          <tr>
+            <td>310</td><td class="status-vac">Vacant</td><td>Studio</td><td class="r">524</td><td>—</td><td class="r">—</td><td class="r">$995</td><td class="r" style="color:#B7791F">n/a</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Sheet footer with 255 stat -->
+      <div class="flex items-center justify-between px-4 py-2 bg-tint border-t border-line">
+        <div class="text-[11px] text-muted italic">The Jasmine · 13450 Esperanza Rd, Dallas TX · Auto-populated by Primer</div>
+        <div class="flex items-center gap-2">
+          <span class="font-serif font-bold text-teal text-[22px] leading-none">255</span>
+          <span class="text-[11px] text-muted">formulas in this model<br>reference this tab</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4 callout pills with leader lines ── -->
+
+  <!-- Top-left: Structured -->
+  <div class="b" style="left:65px; top:207px; width:182px;">
+    <div class="bg-white border border-teal rounded-[6px] px-3 py-2.5 shadow-sm">
+      <div class="text-[12.5px] font-bold text-ink leading-tight">Structured the same way, every time</div>
+      <p class="mt-1 text-[11.5px] text-body leading-snug">Your model references it by cell — new deal drops in and flows through.</p>
+    </div>
+    <!-- Leader line -->
+    <svg style="position:absolute;left:181px;top:20px;width:22px;height:2px;" viewBox="0 0 22 2"><line x1="0" y1="1" x2="22" y2="1" stroke="#2C8B7B" stroke-width="1.5" stroke-dasharray="3 2"/></svg>
+  </div>
+
+  <!-- Top-right: Customizable -->
+  <div class="b" style="left:1033px; top:207px; width:182px;">
+    <div class="bg-white border border-teal rounded-[6px] px-3 py-2.5 shadow-sm">
+      <div class="text-[12.5px] font-bold text-ink leading-tight">Customizable to your process</div>
+      <p class="mt-1 text-[11.5px] text-body leading-snug">Add a column or ask in plain English: "show new vs. renewal rent by unit type."</p>
+    </div>
+    <!-- Leader line -->
+    <svg style="position:absolute;right:181px;top:20px;width:22px;height:2px;" viewBox="0 0 22 2"><line x1="0" y1="1" x2="22" y2="1" stroke="#2C8B7B" stroke-width="1.5" stroke-dasharray="3 2"/></svg>
+  </div>
+
+  <!-- Bottom-left: Asset class -->
+  <div class="b" style="left:65px; top:535px; width:182px;">
+    <div class="bg-white border border-teal rounded-[6px] px-3 py-2.5 shadow-sm">
+      <div class="text-[12.5px] font-bold text-ink leading-tight">Works across any asset class</div>
+      <p class="mt-1 text-[11.5px] text-body leading-snug">Multifamily, storage, office, retail. Same input sheet, your fields.</p>
+    </div>
+    <svg style="position:absolute;left:181px;top:20px;width:22px;height:2px;" viewBox="0 0 22 2"><line x1="0" y1="1" x2="22" y2="1" stroke="#2C8B7B" stroke-width="1.5" stroke-dasharray="3 2"/></svg>
+  </div>
+
+  <!-- Bottom-right: Never touches -->
+  <div class="b" style="left:1033px; top:535px; width:182px;">
+    <div class="bg-white border border-teal rounded-[6px] px-3 py-2.5 shadow-sm">
+      <div class="text-[12.5px] font-bold text-ink leading-tight">Never touches your work</div>
+      <p class="mt-1 text-[11.5px] text-body leading-snug">Primer writes only this tab. Re-run a deal and your formulas stay intact.</p>
+    </div>
+    <svg style="position:absolute;right:181px;top:20px;width:22px;height:2px;" viewBox="0 0 22 2"><line x1="0" y1="1" x2="22" y2="1" stroke="#2C8B7B" stroke-width="1.5" stroke-dasharray="3 2"/></svg>
+  </div>
+
+  <!-- Transition line -->
+  <div class="b left-0 right-0 text-center text-muted text-[12.5px] italic" style="top:698px;">This is the sheet we'll open together next.</div>
+
+</section>
+</body>
+</html>

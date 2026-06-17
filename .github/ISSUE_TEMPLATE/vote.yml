@@ -1,0 +1,40 @@
+name: Slide vote / feedback
+description: Vote for an option on one slide, or leave feedback on a specific option.
+title: "Slide X — vote"
+labels: ["vote"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One issue per slide. To **vote**, 👍 the comment for the option you want.
+        Use this form to open a slide's vote thread or to leave written feedback.
+  - type: dropdown
+    id: slide
+    attributes:
+      label: Which slide?
+      options:
+        - "A — Overview (what Primer is)"
+        - "B — Flow (how it works)"
+        - "C — The Input sheet (fills your model)"
+        - "D — The Intelligence"
+    validations:
+      required: true
+  - type: dropdown
+    id: pick
+    attributes:
+      label: Your pick (if you have one)
+      options:
+        - "Option 1"
+        - "Option 2"
+        - "Option 3"
+        - "No pick yet — just feedback"
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Feedback
+      description: What works, what doesn't, what you'd change. Reference the option code (e.g. C3) where you can.
+      placeholder: "C3 reads cleanest, but the formula bar text is small. B1 connectors feel busy."
+    validations:
+      required: false

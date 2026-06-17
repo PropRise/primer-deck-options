@@ -15,8 +15,8 @@ set -uo pipefail
 cd "$(dirname "$0")"
 
 PORT=5300
-OWNER_REPO="jeanmichaeldiei/primer-deck-options"
-LIVE="https://jeanmichaeldiei.github.io/primer-deck-options"
+OWNER_REPO="PropRise/primer-deck-options"
+LIVE="https://proprise.github.io/primer-deck-options"
 B="\033[1m"; D="\033[2m"; G="\033[32m"; R="\033[31m"; E="\033[0m"
 
 usage() {

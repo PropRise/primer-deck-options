@@ -51,10 +51,10 @@
     <h1>Platform slide options</h1>
     <p class="sub">Four new slides to replace the old "How Boardwalk" step — <strong>Overview</strong>, <strong>Flow</strong>, the <strong>Input sheet</strong>, and the <strong>Intelligence</strong>. Three design options each. Click any thumbnail to open it full-screen at 1280×720 (true deck size). The option outlined in teal is the current recommendation for that slide.</p>
     <div class="toolbar">
-      <a href="https://github.com/jeanmichaeldiei/primer-deck-options" target="_blank" rel="noopener">↗ Repo</a>
-      <a href="https://github.com/jeanmichaeldiei/primer-deck-options/issues" target="_blank" rel="noopener">🗳 Vote / discuss</a>
-      <a href="https://github.com/jeanmichaeldiei/primer-deck-options/blob/main/DESIGN.md" target="_blank" rel="noopener">🎨 Design language</a>
-      <a href="https://github.com/jeanmichaeldiei/primer-deck-options/blob/main/README.md" target="_blank" rel="noopener">＋ Add your own option</a>
+      <a href="https://github.com/PropRise/primer-deck-options" target="_blank" rel="noopener">↗ Repo</a>
+      <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">🗳 Vote / discuss</a>
+      <a href="https://github.com/PropRise/primer-deck-options/blob/main/DESIGN.md" target="_blank" rel="noopener">🎨 Design language</a>
+      <a href="https://github.com/PropRise/primer-deck-options/blob/main/README.md" target="_blank" rel="noopener">＋ Add your own option</a>
     </div>
   </header>
   <div id="root"></div>
@@ -82,7 +82,7 @@ function render(data){
   const arc = (data.recommendedArc || []).join(' → ');
   document.getElementById('foot').innerHTML =
     (arc ? `Current recommended arc: <code>${arc}</code>.<br>` : '') +
-    `<b>To vote</b> — open the <a href="https://github.com/jeanmichaeldiei/primer-deck-options/issues" target="_blank" rel="noopener">issues</a> and 👍 the option you like for each slide. ` +
+    `<b>To vote</b> — open the <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">issues</a> and 👍 the option you like for each slide. ` +
     `<b>To propose a new option</b> — copy <code>slide-template.html</code>, build it (your own Claude Code can follow <code>DESIGN.md</code>), add one line to <code>slides.json</code>, and open a PR. It shows up here automatically.`;
   rescale();
 }

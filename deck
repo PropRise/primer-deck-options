@@ -4,8 +4,9 @@
 #
 #    ./deck new C4 "Dark workbook" "Dark · formula bar"   start a new option
 #    ./deck preview                                       see the gallery locally
-#    ./deck publish "made slide C dark"                   ship it (opens a PR)
+#    ./deck publish "made slide C dark"                   ship it (opens a PR + screenshot)
 #    ./deck check                                         is everything wired up?
+#    ./deck shot A1-statement-pillars.html                screenshot a slide into previews/
 #    ./deck stop                                          stop the local preview
 #
 #  You rarely run these by hand — tell your Claude Code what you want and it
@@ -36,6 +37,9 @@ $(printf "${B}deck${E}") — work on Primer slide options
   $(printf "${B}./deck check${E}")
       Confirm every option is wired up (run automatically before publish).
 
+  $(printf "${B}./deck shot${E}") path/to/slide.html [out.png]
+      Screenshot a slide at 1280x720 into previews/ (publish does this for you).
+
   $(printf "${B}./deck stop${E}")
       Stop the local preview.
 
@@ -45,6 +49,35 @@ EOF
 }
 
 free_port() { command -v lsof >/dev/null 2>&1 && lsof -ti tcp:$PORT 2>/dev/null | xargs kill 2>/dev/null; true; }
+
+# deck_shot <slide.html> [out.png] — best-effort headless render at 1280x720.
+# Falls back with guidance if no headless Chrome is installed; never fatal.
+deck_shot() {
+  local src="${1:-}" out="${2:-}"
+  if [ -z "$src" ]; then printf "${R}usage:${E} ./deck shot <slide.html> [out.png]\n"; return 1; fi
+  if [ ! -f "$src" ]; then printf "${R}No such file:${E} %s\n" "$src"; return 1; fi
+  [ -z "$out" ] && out="previews/$(basename "${src%.*}").png"
+  mkdir -p "$(dirname "$out")"
+  local abs; abs="$(cd "$(dirname "$src")" && pwd)/$(basename "$src")"
+  local chrome=""
+  for c in "${CHROME:-}" google-chrome google-chrome-stable chromium chromium-browser brave-browser \
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    "/Applications/Chromium.app/Contents/MacOS/Chromium" \
+    "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" \
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"; do
+    [ -z "$c" ] && continue
+    if command -v "$c" >/dev/null 2>&1 || [ -x "$c" ]; then chrome="$c"; break; fi
+  done
+  if [ -z "$chrome" ]; then
+    printf "${D}No headless Chrome found — can't auto-screenshot.${E}\n"
+    printf "${D}In Claude Code, screenshot %s at 1280x720 and save it to %s, then re-run.${E}\n" "$src" "$out"
+    return 2
+  fi
+  "$chrome" --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+    --window-size=1280,720 --virtual-time-budget=4000 --screenshot="$out" "file://$abs" >/dev/null 2>&1
+  if [ -s "$out" ]; then printf "${G}✓ screenshot${E} %s\n" "$out"; return 0; fi
+  printf "${R}Couldn't render %s.${E} Screenshot it manually to %s.\n" "$src" "$out"; return 1
+}
 
 cmd="${1:-help}"; shift 2>/dev/null || true
 
@@ -70,6 +103,10 @@ case "$cmd" in
     python3 scripts/deckkit.py check
     ;;
 
+  shot)
+    deck_shot "${1:-}" "${2:-}"
+    ;;
+
   publish)
     msg="${1:-}"
     if [ -z "$msg" ]; then
@@ -89,6 +126,16 @@ case "$cmd" in
     if git rev-parse --verify --quiet "$branch" >/dev/null; then branch="$branch-$(date +%H%M%S)"; fi
 
     git checkout -b "$branch" >/dev/null 2>&1 || { printf "${R}Couldn't create branch $branch${E}\n"; exit 1; }
+
+    # Screenshot any slide that changed, so reviewers see it in the PR without checking out.
+    changed_slides=$(git status --porcelain | sed 's/^...//' | grep -E '^(context/.*|[A-Z][0-9]+-.*)\.html$' || true)
+    shots=""
+    for f in $changed_slides; do
+      png="previews/$(basename "${f%.*}").png"
+      [ -f "$png" ] || deck_shot "$f" "$png" >/dev/null 2>&1 || true
+      [ -f "$png" ] && shots="$shots $png"
+    done
+
     git add -A
     git commit -q -m "$msg" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
     if ! git push -u origin "$branch" >/tmp/primer-deck-options.push.log 2>&1; then
@@ -98,6 +145,13 @@ case "$cmd" in
       exit 1
     fi
     body=$(printf 'Proposed change: %s\n\nReview the diff, then merge — it goes live at %s/ within ~30s.' "$msg" "$LIVE")
+    for png in $shots; do
+      raw="https://raw.githubusercontent.com/$OWNER_REPO/$branch/$png"
+      body=$(printf '%s\n\n![%s](%s)' "$body" "$(basename "$png")" "$raw")
+    done
+    if [ -z "$shots" ]; then
+      body=$(printf '%s\n\n_No slide screenshot attached — add one to `previews/` so reviewers can see the change._' "$body")
+    fi
     if url=$(gh pr create --repo "$OWNER_REPO" --title "$msg" --body "$body" 2>/tmp/primer-deck-options.pr.log); then
       printf "\n${G}✓ Pull request opened${E}\n  %s\n" "$url"
       printf "${D}JM reviews and merges; the gallery updates automatically.${E}\n"

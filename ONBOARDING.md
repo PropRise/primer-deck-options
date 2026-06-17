@@ -15,8 +15,9 @@ One command does each thing. You drive it; the human watches the result.
 ```
 ./deck new C4 "Dark workbook" "Dark · formula bar"   # start a new option
 ./deck preview                                        # gallery at localhost:5300
-./deck publish "made slide C dark"                    # ship it as a PR
+./deck publish "made slide C dark"                    # ship it as a PR (+ screenshot)
 ./deck check                                          # is everything wired up?
+./deck shot A1-statement-pillars.html                # screenshot a slide into previews/
 ```
 
 `./deck new` creates the file **and** lists it in the gallery, so it can't be forgotten. To change an existing option instead, just edit its `.html` file directly — no `new` needed.
@@ -26,7 +27,7 @@ One command does each thing. You drive it; the human watches the result.
 2. **Build.** `./deck new …` for a new option (then edit the file), or edit the existing file. Stay inside the `<section class="stage">`, keep it 1280×720, use the palette tokens from `theme.js` (e.g. `bg-bgdark`, `text-teal`, `font-serif`) and the helpers in `deck.css`. Keep the sample-deal numbers consistent with `DESIGN.md`.
 3. **Show.** Run `./deck preview` and tell them: *"Open http://localhost:5300 and refresh — it's the third card under Slide C."* If you have a browser or screenshot tool, look at it yourself first and fix the obvious things before handing it over.
 4. **Refine.** Take their feedback, edit, tell them to refresh. Repeat until they say it's right.
-5. **Ship.** `./deck publish "one line about what you made"`. That opens a pull request. Tell them the PR link and that JM reviews and merges it, after which it's live on the gallery within about 30 seconds.
+5. **Ship.** When they say "ship it": screenshot the slide first so it rides along in the PR — `./deck shot <the slide file>` (it lands in `previews/`), or use your own screenshot tool to save a 1280×720 image there. Then `./deck publish "one line about what you made"`. That opens a pull request with the screenshot embedded. Tell them the PR link and that JM reviews and merges it, after which it's live on the gallery within about 30 seconds. **Never merge it yourself.**
 
 ## Rules that matter
 - The frame is **exactly 1280×720** — the deck is rebuilt 1:1 in PowerPoint. Never resize it.

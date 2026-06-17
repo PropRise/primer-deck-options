@@ -1,11 +1,22 @@
 {
   "project": "Primer platform slides",
-  "note": "Four new slides to replace the old \"How Boardwalk\" step. Three options each. Add or remove options by editing this file — index.html renders straight from it.",
+  "note": "Four new slides to replace the old \"How Boardwalk\" step. Three options each. Add or remove options by editing this file — index.html renders straight from it. The `deck` array is the full sales deck in running order: `fixed` items are decided context slides (sanitized for this public repo); `decision` items are the open slots A–D, where you flip between the options in `slides` and vote.",
   "recommendedArc": [
     "A1",
     "B3",
     "C3",
     "D2"
+  ],
+  "deck": [
+    { "type": "fixed", "file": "context/1-cover.html", "title": "Cover", "note": "Title" },
+    { "type": "fixed", "file": "context/2-quotes.html", "title": "Context", "note": "What acquisition leads tell us" },
+    { "type": "fixed", "file": "context/3-options.html", "title": "Options", "note": "How teams try to solve it today" },
+    { "type": "fixed", "file": "context/4-results.html", "title": "Results", "note": "What changed for the customer" },
+    { "type": "decision", "slide": "A" },
+    { "type": "decision", "slide": "B" },
+    { "type": "decision", "slide": "C" },
+    { "type": "decision", "slide": "D" },
+    { "type": "fixed", "file": "context/9-pricing.html", "title": "Pricing", "note": "The investment" }
   ],
   "slides": [
     {

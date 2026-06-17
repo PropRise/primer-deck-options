@@ -94,6 +94,28 @@ def cmd_check(argv):
             bad("%s exists but isn't in slides.json (it won't show in the gallery)" % fn)
             info('    add it with one line, or run: ./deck new ...')
             problems += 1
+
+    # The `deck` array is the full running order shown in the gallery:
+    # fixed context slides + decision slots that point at a slide letter.
+    deck = data.get("deck")
+    if deck:
+        letters = {s["slide"] for s in data["slides"]}
+        for i, item in enumerate(deck):
+            t = item.get("type")
+            if t == "fixed":
+                fn = item.get("file", "")
+                if not fn:
+                    bad("deck[%d] (fixed) is missing 'file'" % i); problems += 1
+                elif not os.path.exists(os.path.join(ROOT, fn)):
+                    bad("deck[%d] points to %s, which is missing" % (i, fn)); problems += 1
+            elif t == "decision":
+                ltr = item.get("slide", "")
+                if ltr not in letters:
+                    bad("deck[%d] (decision) references slide %r, not in slides[]" % (i, ltr)); problems += 1
+            else:
+                bad("deck[%d] has type %r (want 'fixed' or 'decision')" % (i, t)); problems += 1
+        ok("deck running order: %d positions listed" % len(deck))
+
     n = len(listed)
     if problems == 0:
         ok("%d options, all wired up" % n)

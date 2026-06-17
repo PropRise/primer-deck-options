@@ -90,11 +90,6 @@
   .modal-h { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; padding-right:28px; }
   .modal-sub { color:var(--muted); font-size:13.5px; line-height:1.6; margin:8px 0 16px; }
   .modal-sub b { color:var(--ink); font-weight:600; }
-  .clone { display:flex; align-items:center; gap:10px; background:var(--panel2); border:1px solid var(--line); border-radius:9px; padding:9px 11px; margin-bottom:13px; }
-  .clone .lbl { color:var(--muted); font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }
-  .clone code { color:var(--teal2); font-size:12px; overflow:auto; white-space:nowrap; flex:1; }
-  .mini { background:transparent; border:1px solid var(--line); color:var(--muted); font:inherit; font-size:11.5px; padding:4px 10px; border-radius:6px; cursor:pointer; white-space:nowrap; }
-  .mini:hover { border-color:var(--teal); color:var(--ink); }
   #promptBox { width:100%; min-height:330px; resize:vertical; background:var(--panel2); border:1px solid var(--line); border-radius:9px; color:var(--ink); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; line-height:1.55; padding:13px 14px; }
   .modal-actions { display:flex; align-items:center; gap:13px; margin-top:14px; flex-wrap:wrap; }
   .btn-primary { background:var(--teal); color:#06251E; border:0; border-radius:8px; font:inherit; font-weight:700; font-size:13.5px; padding:9px 17px; cursor:pointer; }
@@ -126,7 +121,7 @@
       <a href="https://github.com/PropRise/primer-deck-options/blob/main/DESIGN.md" target="_blank" rel="noopener">🎨 Design language</a>
       <a href="https://github.com/PropRise/primer-deck-options/blob/main/FLOW.md" target="_blank" rel="noopener">＋ How to add or tweak a slide</a>
     </div>
-    <p class="hint">Want to change the deck? Hover any slide and hit <b>✎ Tweak this</b>, or use <b>＋ Add a slide here</b> in the gap between any two. You get a ready-to-paste prompt for your own <b>Claude Code</b> — it builds the slide with you, screenshots it, and opens a PR for JM to review. The page never changes the deck on its own.</p>
+    <p class="hint">Want to change the deck? Hover any slide and hit <b>✎ Tweak this</b>, or use <b>＋ Add a slide here</b> in the gap between any two. You get a ready-to-paste prompt for your own <b>AI coding agent</b> — it builds the slide with you, screenshots it, and opens a PR for JM to review. The page never changes the deck on its own.</p>
   </header>
   <div id="root" class="flow"></div>
   <footer id="foot"></footer>
@@ -136,12 +131,7 @@
   <div class="modal-card">
     <button class="modal-x" id="modalX" title="Close">✕</button>
     <div class="modal-h" id="modalH">Tweak this slide</div>
-    <p class="modal-sub">Paste this into <b>Claude Code</b>, running in a clone of this repo. It reads the design language, builds the slide with you, screenshots it, and opens a PR for JM to review. Nothing here touches the deck on its own.</p>
-    <div class="clone">
-      <span class="lbl">First time?</span>
-      <code id="cloneCmd">git clone https://github.com/PropRise/primer-deck-options &amp;&amp; cd primer-deck-options &amp;&amp; claude</code>
-      <button class="mini" data-copy="clone">Copy</button>
-    </div>
+    <p class="modal-sub">Paste this into your AI coding agent. It clones the repo if you don't have it yet, reads the design language, builds the slide with you, screenshots it, and opens a PR for JM to review. Nothing here touches the deck on its own.</p>
     <textarea id="promptBox" readonly spellcheck="false"></textarea>
     <div class="modal-actions">
       <button class="btn-primary" id="copyPrompt">Copy prompt</button>
@@ -252,7 +242,7 @@ function render(data){
   document.getElementById('foot').innerHTML =
     (arc ? `Current recommended arc for the four open slides: <code>${esc(arc)}</code>.<br>` : '') +
     `<b>To vote</b> — flip to the option you like on each open slide, then 👍 its comment in the matching <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">slide issue</a>. ` +
-    `<b>To change the deck</b> — hover a slide for <code>✎ Tweak this</code>, or <code>＋ Add a slide here</code> between any two. You get a prompt to paste into your own Claude Code; it builds the slide, screenshots it, and opens a PR for JM to review.`;
+    `<b>To change the deck</b> — hover a slide for <code>✎ Tweak this</code>, or <code>＋ Add a slide here</code> between any two. You get a prompt to paste into your own AI coding agent; it builds the slide, screenshots it, and opens a PR for JM to review.`;
   rescale();
 }
 
@@ -280,11 +270,12 @@ fileLine + '.',
 info.note ? `Its job in the pitch: ${info.note}` : '',
 ``,
 `Do this:`,
-`1. Read ONBOARDING.md, DESIGN.md, and CLAUDE.md so you match the deck's design language: the 1280x720 frame, the palette tokens in theme.js, and the banned copy/visual patterns.`,
-`2. Open ${info.file} and read the current slide.`,
-`3. The change I want: <<DESCRIBE YOUR CHANGE HERE>>`,
-`4. Edit the file, run ./deck preview, and point me at http://localhost:5300 to refresh and review. Iterate with me until I say it looks right.`,
-`5. When I say "ship it": capture a screenshot of the slide at 1280x720 and save it to ${png}, then run ./deck publish "tweak ${info.code || info.title}". The screenshot must end up in the PR so JM can see the change without checking out the branch. Do not merge — JM reviews and merges.`
+`1. If you don't already have the primer-deck-options repo locally, clone it and work inside it: git clone https://github.com/PropRise/primer-deck-options && cd primer-deck-options`,
+`2. Read ONBOARDING.md, DESIGN.md, and CLAUDE.md so you match the deck's design language: the 1280x720 frame, the palette tokens in theme.js, and the banned copy/visual patterns.`,
+`3. Open ${info.file} and read the current slide.`,
+`4. The change I want: <<DESCRIBE YOUR CHANGE HERE>>`,
+`5. Edit the file, run ./deck preview, and point me at http://localhost:5300 to refresh and review. Iterate with me until I say it looks right.`,
+`6. When I say "ship it": capture a screenshot of the slide at 1280x720 and save it to ${png}, then run ./deck publish "tweak ${info.code || info.title}". The screenshot must end up in the PR so JM can see the change without checking out the branch. Do not merge — JM reviews and merges.`
 ].filter(s => s !== '').join('\n');
 }
 
@@ -303,11 +294,12 @@ function addPrompt(prev, next){
 bridge,
 ``,
 `Do this:`,
-`1. Read ONBOARDING.md, DESIGN.md, and CLAUDE.md first: the design language, the 1280x720 frame, the palette tokens in theme.js, the banned copy/visual patterns, and how deck[] + context/ work in slides.json.`,
-`2. The slide I want: <<DESCRIBE THE NEW SLIDE HERE>>`,
-`3. Build it. If it's a new decided step in the story, create context/<name>.html and add a {"type":"fixed","file":"context/<name>.html","title":"...","note":"..."} entry to deck[] in slides.json ${place}. If instead it's a new option for one of the open slots (A-D), use ./deck new and let it slot in. Either way, stay inside <section class="stage"> and keep it 1280x720.`,
-`4. Run ./deck preview and point me at http://localhost:5300 to refresh and review. Iterate until I'm happy.`,
-`5. When I say "ship it": capture a screenshot of the new slide at 1280x720 and save it to previews/<name>.png, then run ./deck publish "add slide: <short name>". The screenshot must end up in the PR so JM can see the new slide without checking out the branch. Do not merge — JM reviews.`
+`1. If you don't already have the primer-deck-options repo locally, clone it and work inside it: git clone https://github.com/PropRise/primer-deck-options && cd primer-deck-options`,
+`2. Read ONBOARDING.md, DESIGN.md, and CLAUDE.md first: the design language, the 1280x720 frame, the palette tokens in theme.js, the banned copy/visual patterns, and how deck[] + context/ work in slides.json.`,
+`3. The slide I want: <<DESCRIBE THE NEW SLIDE HERE>>`,
+`4. Build it. If it's a new decided step in the story, create context/<name>.html and add a {"type":"fixed","file":"context/<name>.html","title":"...","note":"..."} entry to deck[] in slides.json ${place}. If instead it's a new option for one of the open slots (A-D), use ./deck new and let it slot in. Either way, stay inside <section class="stage"> and keep it 1280x720.`,
+`5. Run ./deck preview and point me at http://localhost:5300 to refresh and review. Iterate until I'm happy.`,
+`6. When I say "ship it": capture a screenshot of the new slide at 1280x720 and save it to previews/<name>.png, then run ./deck publish "add slide: <short name>". The screenshot must end up in the PR so JM can see the new slide without checking out the branch. Do not merge — JM reviews.`
 ].filter(s => s !== '').join('\n');
 }
 
@@ -357,15 +349,8 @@ document.addEventListener('click', e => {
   const ad = e.target.closest('.addslot'); if (ad){ openAdd(ad); return; }
   if (e.target.id === 'copyPrompt'){
     copyText(document.getElementById('promptBox').value)
-      .then(() => { document.getElementById('copyState').textContent = 'Copied — paste it into Claude Code.'; })
+      .then(() => { document.getElementById('copyState').textContent = 'Copied — paste it into your AI coding agent.'; })
       .catch(() => { document.getElementById('copyState').textContent = 'Press Cmd/Ctrl+C to copy.'; document.getElementById('promptBox').select(); });
-    return;
-  }
-  const mc = e.target.closest('[data-copy]');
-  if (mc){
-    copyText(document.getElementById('cloneCmd').textContent)
-      .then(() => { const o = mc.textContent; mc.textContent = 'Copied'; setTimeout(() => { mc.textContent = o; }, 1200); })
-      .catch(() => {});
     return;
   }
   if (e.target.id === 'modalX' || e.target.classList.contains('modal')){ closeModal(); return; }

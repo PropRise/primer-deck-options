@@ -24,9 +24,12 @@
   .toolbar { margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; }
   .toolbar a { display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:500; color:var(--ink); text-decoration:none; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 13px; }
   .toolbar a:hover { border-color:var(--teal); }
+  .hint { margin-top:14px; color:var(--muted); font-size:13px; max-width:820px; line-height:1.6; }
+  .hint b { color:var(--ink); font-weight:600; }
+  .hint code { color:var(--teal2); background:rgba(126,207,197,0.1); padding:1px 6px; border-radius:4px; font-size:12px; }
 
   /* ── running deck: a vertical spine with one row per slide ── */
-  .flow { margin-top:40px; }
+  .flow { margin-top:36px; }
   .row { display:grid; grid-template-columns:64px 1fr; }
   .spine { position:relative; }
   .spine .line { position:absolute; left:30px; top:0; bottom:0; width:2px; background:var(--line); }
@@ -35,13 +38,15 @@
   .spine .dot { position:absolute; left:18px; top:11px; width:26px; height:26px; border-radius:999px; background:var(--bg); border:2px solid var(--muted); color:var(--muted); font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; }
   .row.open .spine .dot { border-color:var(--teal); color:#06251E; background:var(--teal); box-shadow:0 0 0 4px rgba(44,139,123,0.22); }
 
-  .content { padding:6px 0 42px 8px; min-width:0; }
-  .rowhead { display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; margin-bottom:11px; }
+  .content { padding:6px 0 12px 8px; min-width:0; }
+  .rowhead { display:flex; align-items:center; gap:11px; flex-wrap:wrap; margin-bottom:11px; }
   .rowhead .rtitle { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; }
   .rtag { font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 9px; border-radius:999px; }
   .rtag.set  { color:var(--muted); border:1px solid var(--line); }
   .rtag.open { color:#06251E; background:var(--teal2); }
   .rowhead .rnote { color:var(--muted); font-size:13.5px; }
+  .tweak { margin-left:auto; background:transparent; border:1px solid var(--line); color:var(--muted); font:inherit; font-size:12px; font-weight:500; padding:4px 11px; border-radius:7px; cursor:pointer; white-space:nowrap; transition:border-color .12s, color .12s; }
+  .tweak:hover { border-color:var(--teal); color:var(--ink); }
 
   .frame { position:relative; aspect-ratio:1280/720; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:12px; }
   .row.open .frame { border-color:var(--teal); box-shadow:0 0 0 1px var(--teal); }
@@ -62,16 +67,46 @@
   .votehint .muted { color:var(--muted); }
   .votehint code { color:var(--teal2); }
 
+  /* ── insert affordance between slides ── */
+  .gap { display:grid; grid-template-columns:64px 1fr; }
+  .gspine { position:relative; }
+  .gspine .gseg { position:absolute; left:30px; top:0; bottom:0; width:2px; background:var(--line); opacity:.55; }
+  .gcontent { display:flex; align-items:center; padding:0 0 0 8px; min-height:30px; }
+  .addslot { opacity:.0; background:transparent; border:1px dashed var(--line); color:var(--muted); font:inherit; font-size:11.5px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; padding:5px 13px; border-radius:999px; cursor:pointer; transition:opacity .14s, border-color .12s, color .12s; }
+  .gap:hover .addslot, .addslot:focus-visible { opacity:1; }
+  .addslot:hover { border-style:solid; border-color:var(--teal); color:var(--teal2); }
+
   footer { margin-top:30px; color:var(--muted); font-size:13.5px; border-top:1px solid var(--line); padding-top:24px; line-height:1.7; }
   footer code { color:var(--teal2); background:rgba(126,207,197,0.1); padding:1px 6px; border-radius:4px; font-size:12.5px; }
   footer b { color:var(--ink); font-weight:600; }
   .err { color:#E0A0A0; font-size:14px; margin-top:24px; }
 
+  /* ── prompt modal ── */
+  .modal { position:fixed; inset:0; background:rgba(6,14,11,.74); display:flex; align-items:center; justify-content:center; padding:28px; z-index:50; }
+  .modal[hidden] { display:none; }
+  .modal-card { width:min(720px,100%); max-height:88vh; overflow:auto; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:24px 24px 22px; position:relative; box-shadow:0 24px 60px rgba(0,0,0,.45); }
+  .modal-x { position:absolute; right:13px; top:11px; background:transparent; border:0; color:var(--muted); font-size:16px; cursor:pointer; line-height:1; }
+  .modal-x:hover { color:var(--ink); }
+  .modal-h { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; padding-right:28px; }
+  .modal-sub { color:var(--muted); font-size:13.5px; line-height:1.6; margin:8px 0 16px; }
+  .modal-sub b { color:var(--ink); font-weight:600; }
+  .clone { display:flex; align-items:center; gap:10px; background:var(--panel2); border:1px solid var(--line); border-radius:9px; padding:9px 11px; margin-bottom:13px; }
+  .clone .lbl { color:var(--muted); font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }
+  .clone code { color:var(--teal2); font-size:12px; overflow:auto; white-space:nowrap; flex:1; }
+  .mini { background:transparent; border:1px solid var(--line); color:var(--muted); font:inherit; font-size:11.5px; padding:4px 10px; border-radius:6px; cursor:pointer; white-space:nowrap; }
+  .mini:hover { border-color:var(--teal); color:var(--ink); }
+  #promptBox { width:100%; min-height:330px; resize:vertical; background:var(--panel2); border:1px solid var(--line); border-radius:9px; color:var(--ink); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; line-height:1.55; padding:13px 14px; }
+  .modal-actions { display:flex; align-items:center; gap:13px; margin-top:14px; flex-wrap:wrap; }
+  .btn-primary { background:var(--teal); color:#06251E; border:0; border-radius:8px; font:inherit; font-weight:700; font-size:13.5px; padding:9px 17px; cursor:pointer; }
+  .btn-primary:hover { background:var(--teal2); }
+  .modal-hint { color:var(--teal2); font-size:12.5px; }
+
   @media (max-width:720px){
     .wrap { padding:32px 18px 70px; }
     h1 { font-size:32px; }
-    .row { grid-template-columns:40px 1fr; }
-    .spine .line { left:18px; } .spine .dot { left:6px; }
+    .row, .gap { grid-template-columns:40px 1fr; }
+    .spine .line, .gspine .gseg { left:18px; } .spine .dot { left:6px; }
+    .tweak { margin-left:0; }
   }
 </style>
 </head>
@@ -89,22 +124,58 @@
       <a href="https://github.com/PropRise/primer-deck-options" target="_blank" rel="noopener">↗ Repo</a>
       <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">🗳 Vote / discuss</a>
       <a href="https://github.com/PropRise/primer-deck-options/blob/main/DESIGN.md" target="_blank" rel="noopener">🎨 Design language</a>
-      <a href="https://github.com/PropRise/primer-deck-options/blob/main/README.md" target="_blank" rel="noopener">＋ Add your own option</a>
+      <a href="https://github.com/PropRise/primer-deck-options/blob/main/FLOW.md" target="_blank" rel="noopener">＋ How to add or tweak a slide</a>
     </div>
+    <p class="hint">Want to change the deck? Hover any slide and hit <b>✎ Tweak this</b>, or use <b>＋ Add a slide here</b> in the gap between any two. You get a ready-to-paste prompt for your own <b>Claude Code</b> — it builds the slide with you, screenshots it, and opens a PR for JM to review. The page never changes the deck on its own.</p>
   </header>
   <div id="root" class="flow"></div>
   <footer id="foot"></footer>
 </div>
 
-<script>
-function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+<div class="modal" id="modal" hidden>
+  <div class="modal-card">
+    <button class="modal-x" id="modalX" title="Close">✕</button>
+    <div class="modal-h" id="modalH">Tweak this slide</div>
+    <p class="modal-sub">Paste this into <b>Claude Code</b>, running in a clone of this repo. It reads the design language, builds the slide with you, screenshots it, and opens a PR for JM to review. Nothing here touches the deck on its own.</p>
+    <div class="clone">
+      <span class="lbl">First time?</span>
+      <code id="cloneCmd">git clone https://github.com/PropRise/primer-deck-options &amp;&amp; cd primer-deck-options &amp;&amp; claude</code>
+      <button class="mini" data-copy="clone">Copy</button>
+    </div>
+    <textarea id="promptBox" readonly spellcheck="false"></textarea>
+    <div class="modal-actions">
+      <button class="btn-primary" id="copyPrompt">Copy prompt</button>
+      <span class="modal-hint" id="copyState"></span>
+    </div>
+  </div>
+</div>
 
-function fixedRow(item, pos){
+<script>
+let DATA = null, byLetter = {};
+
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function baseName(f){ return String(f || 'slide').replace(/^.*\//, '').replace(/\.html?$/i, ''); }
+
+// what each deck position is, for neighbour context and prompts
+function deckItemInfo(item){
+  if (!item) return null;
+  if (item.type === 'decision'){
+    const s = byLetter[item.slide] || {};
+    const opts = s.options || [];
+    const act = opts.find(o => o.recommended) || opts[0] || {};
+    return { kind:'decision', letter:item.slide, title:s.title || ('Slide ' + item.slide), file:act.file, code:act.code, name:act.name, note:s.desc || '' };
+  }
+  return { kind:'fixed', title:item.title, file:item.file, note:item.note || '' };
+}
+
+function fixedRow(item, pos, i){
   const row = document.createElement('div'); row.className = 'row';
   row.innerHTML =
     `<div class="spine"><span class="line"></span><span class="dot">${pos}</span></div>` +
     `<div class="content">` +
-      `<div class="rowhead"><span class="rtitle">${esc(item.title)}</span><span class="rtag set">Decided</span><span class="rnote">${esc(item.note)}</span></div>` +
+      `<div class="rowhead"><span class="rtitle">${esc(item.title)}</span><span class="rtag set">Decided</span><span class="rnote">${esc(item.note)}</span>` +
+        `<button class="tweak" data-tweak="${i}" data-kind="fixed">✎ Tweak this</button>` +
+      `</div>` +
       `<div class="frame">` +
         `<iframe src="${esc(item.file)}" scrolling="no" loading="lazy" title="${esc(item.title)}"></iframe>` +
         `<a class="open-fs" href="${esc(item.file)}" target="_blank" rel="noopener">Open ↗</a>` +
@@ -118,7 +189,7 @@ function voteLine(o, letter){
     `<span class="muted">To vote, 👍 the <code>${esc(o.code)}</code> comment in the slide-${esc(letter)} issue.</span>`;
 }
 
-function decisionRow(s, pos){
+function decisionRow(s, pos, i){
   const opts = s.options || [];
   const active = opts.find(o => o.recommended) || opts[0] || {};
   const L = s.slide;
@@ -126,7 +197,9 @@ function decisionRow(s, pos){
   row.innerHTML =
     `<div class="spine"><span class="line"></span><span class="dot">${pos}</span></div>` +
     `<div class="content">` +
-      `<div class="rowhead"><span class="rtitle">${esc(s.title)}</span><span class="rtag open">Open · pick one of ${opts.length}</span><span class="rnote">${esc(s.desc)}</span></div>` +
+      `<div class="rowhead"><span class="rtitle">${esc(s.title)}</span><span class="rtag open">Open · pick one of ${opts.length}</span><span class="rnote">${esc(s.desc)}</span>` +
+        `<button class="tweak" data-tweak="${i}" data-kind="decision" data-letter="${esc(L)}">✎ Tweak the shown option</button>` +
+      `</div>` +
       `<div class="frame">` +
         `<iframe id="f-${esc(L)}" src="${esc(active.file)}" scrolling="no" loading="lazy" title="${esc(active.code)}"></iframe>` +
         `<a class="open-fs" id="fs-${esc(L)}" href="${esc(active.file)}" target="_blank" rel="noopener">Open ↗</a>` +
@@ -144,9 +217,9 @@ function decisionRow(s, pos){
 }
 
 function render(data){
-  const root = document.getElementById('root');
-  const byLetter = {};
+  DATA = data; byLetter = {};
   (data.slides || []).forEach(s => { byLetter[s.slide] = s; });
+  const root = document.getElementById('root');
   const deck = data.deck || [];
 
   if (!deck.length){
@@ -154,21 +227,32 @@ function render(data){
     return;
   }
 
+  const addGap = (g) => {
+    const el = document.createElement('div'); el.className = 'gap';
+    const seg = (g > 0 && g < deck.length) ? '<span class="gseg"></span>' : '';
+    el.innerHTML =
+      `<div class="gspine">${seg}</div>` +
+      `<div class="gcontent"><button class="addslot" data-gap="${g}">＋ Add a slide here</button></div>`;
+    root.appendChild(el);
+  };
+
   deck.forEach((item, i) => {
+    addGap(i);
     const pos = i + 1;
     if (item.type === 'decision'){
       const s = byLetter[item.slide];
-      if (s) root.appendChild(decisionRow(s, pos));
+      if (s) root.appendChild(decisionRow(s, pos, i));
     } else {
-      root.appendChild(fixedRow(item, pos));
+      root.appendChild(fixedRow(item, pos, i));
     }
   });
+  addGap(deck.length);
 
   const arc = (data.recommendedArc || []).join(' → ');
   document.getElementById('foot').innerHTML =
     (arc ? `Current recommended arc for the four open slides: <code>${esc(arc)}</code>.<br>` : '') +
     `<b>To vote</b> — flip to the option you like on each open slide, then 👍 its comment in the matching <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">slide issue</a>. ` +
-    `<b>To propose a new option</b> — copy <code>slide-template.html</code>, build it (your Claude Code can follow <code>DESIGN.md</code>), add one line to <code>slides.json</code>, and open a PR. It appears here automatically.`;
+    `<b>To change the deck</b> — hover a slide for <code>✎ Tweak this</code>, or <code>＋ Add a slide here</code> between any two. You get a prompt to paste into your own Claude Code; it builds the slide, screenshots it, and opens a PR for JM to review.`;
   rescale();
 }
 
@@ -179,8 +263,114 @@ function rescale(){
   });
 }
 
-// audition in place: clicking a pill swaps the slide's iframe without leaving the row
+// ── prompt builders: tweak and add-between are different jobs ──
+function tweakPrompt(info, pos, prev, next){
+  const where = [];
+  if (prev) where.push('after "' + prev.title + '"');
+  if (next) where.push('before "' + next.title + '"');
+  const fileLine = info.kind === 'decision'
+    ? `Slide ${info.code} — "${info.title}", file ${info.file} (this is the option currently shown for open slot ${info.letter})`
+    : `Slide: "${info.title}", file ${info.file}`;
+  const png = 'previews/' + baseName(info.file) + '.png';
+  return [
+`I'm working in the primer-deck-options repo (Primer's sales deck). I want to tweak one slide and open a PR for review.`,
+``,
+fileLine + '.',
+`It sits at position ${pos} in the deck` + (where.length ? ', ' + where.join(' and ') : '') + '.',
+info.note ? `Its job in the pitch: ${info.note}` : '',
+``,
+`Do this:`,
+`1. Read ONBOARDING.md, DESIGN.md, and CLAUDE.md so you match the deck's design language: the 1280x720 frame, the palette tokens in theme.js, and the banned copy/visual patterns.`,
+`2. Open ${info.file} and read the current slide.`,
+`3. The change I want: <<DESCRIBE YOUR CHANGE HERE>>`,
+`4. Edit the file, run ./deck preview, and point me at http://localhost:5300 to refresh and review. Iterate with me until I say it looks right.`,
+`5. When I say "ship it": capture a screenshot of the slide at 1280x720 and save it to ${png}, then run ./deck publish "tweak ${info.code || info.title}". The screenshot must end up in the PR so JM can see the change without checking out the branch. Do not merge — JM reviews and merges.`
+].filter(s => s !== '').join('\n');
+}
+
+function addPrompt(prev, next){
+  const between = [];
+  if (prev) between.push(`after "${prev.title}" (${prev.file || prev.code})`);
+  if (next) between.push(`before "${next.title}" (${next.file || next.code})`);
+  const bridge = (prev && next)
+    ? `Read both neighbours first so the new slide flows out of "${prev.title}" and into "${next.title}".`
+    : `Read the neighbouring slide first so the new one flows with it.`;
+  const place = prev ? `right after "${prev.title}"` : `at the top of the deck`;
+  return [
+`I'm working in the primer-deck-options repo (Primer's sales deck). I want to ADD a new slide to the deck and open a PR for review.`,
+``,
+`Insert it ` + (between.length ? between.join(', ') : 'into the deck') + '.',
+bridge,
+``,
+`Do this:`,
+`1. Read ONBOARDING.md, DESIGN.md, and CLAUDE.md first: the design language, the 1280x720 frame, the palette tokens in theme.js, the banned copy/visual patterns, and how deck[] + context/ work in slides.json.`,
+`2. The slide I want: <<DESCRIBE THE NEW SLIDE HERE>>`,
+`3. Build it. If it's a new decided step in the story, create context/<name>.html and add a {"type":"fixed","file":"context/<name>.html","title":"...","note":"..."} entry to deck[] in slides.json ${place}. If instead it's a new option for one of the open slots (A-D), use ./deck new and let it slot in. Either way, stay inside <section class="stage"> and keep it 1280x720.`,
+`4. Run ./deck preview and point me at http://localhost:5300 to refresh and review. Iterate until I'm happy.`,
+`5. When I say "ship it": capture a screenshot of the new slide at 1280x720 and save it to previews/<name>.png, then run ./deck publish "add slide: <short name>". The screenshot must end up in the PR so JM can see the new slide without checking out the branch. Do not merge — JM reviews.`
+].filter(s => s !== '').join('\n');
+}
+
+// ── modal ──
+function showModal(title, prompt){
+  document.getElementById('modalH').textContent = title;
+  const box = document.getElementById('promptBox');
+  box.value = prompt;
+  document.getElementById('copyState').textContent = '';
+  document.getElementById('modal').hidden = false;
+  box.scrollTop = 0;
+}
+function closeModal(){ document.getElementById('modal').hidden = true; }
+
+function copyText(t){
+  if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t);
+  return new Promise((res, rej) => {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); res();
+    } catch (e) { rej(e); }
+  });
+}
+
+function openTweak(btn){
+  const i = +btn.dataset.tweak;
+  let info = deckItemInfo(DATA.deck[i]);
+  if (info && info.kind === 'decision'){
+    const on = document.querySelector('#ctl-' + info.letter + ' .pill.on');
+    if (on) info = Object.assign({}, info, { code:on.dataset.code, file:on.dataset.file, name:on.dataset.name });
+  }
+  const prev = deckItemInfo(DATA.deck[i - 1]);
+  const next = deckItemInfo(DATA.deck[i + 1]);
+  showModal('Tweak this slide', tweakPrompt(info, i + 1, prev, next));
+}
+
+function openAdd(btn){
+  const g = +btn.dataset.gap;
+  const prev = deckItemInfo(DATA.deck[g - 1]);
+  const next = deckItemInfo(DATA.deck[g]);
+  showModal('Add a slide here', addPrompt(prev, next));
+}
+
 document.addEventListener('click', e => {
+  const tw = e.target.closest('.tweak');   if (tw){ openTweak(tw); return; }
+  const ad = e.target.closest('.addslot'); if (ad){ openAdd(ad); return; }
+  if (e.target.id === 'copyPrompt'){
+    copyText(document.getElementById('promptBox').value)
+      .then(() => { document.getElementById('copyState').textContent = 'Copied — paste it into Claude Code.'; })
+      .catch(() => { document.getElementById('copyState').textContent = 'Press Cmd/Ctrl+C to copy.'; document.getElementById('promptBox').select(); });
+    return;
+  }
+  const mc = e.target.closest('[data-copy]');
+  if (mc){
+    copyText(document.getElementById('cloneCmd').textContent)
+      .then(() => { const o = mc.textContent; mc.textContent = 'Copied'; setTimeout(() => { mc.textContent = o; }, 1200); })
+      .catch(() => {});
+    return;
+  }
+  if (e.target.id === 'modalX' || e.target.classList.contains('modal')){ closeModal(); return; }
+
+  // audition in place: clicking a pill swaps the slide's iframe without leaving the row
   const pill = e.target.closest('.pill');
   if (!pill) return;
   const L = pill.dataset.slide;
@@ -191,6 +381,8 @@ document.addEventListener('click', e => {
   if (vote) vote.innerHTML = voteLine({ code: pill.dataset.code, name: pill.dataset.name }, L);
   rescale();
 });
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 window.addEventListener('resize', rescale);
 window.addEventListener('load', rescale);

@@ -20,27 +20,33 @@ Open the [issues](https://github.com/PropRise/primer-deck-options/issues). There
 Current recommended arc: **A1 → B3 → C3 → D2**.
 
 ## How to make or change a slide (with your own Claude Code)
-You don't have to be a designer or know git. Point your Claude Code at this repo and talk to it.
+You don't have to be a designer or know git. The gallery hands you the prompt.
+
+**The easy way — straight from the gallery.** Hover any slide and hit **✎ Tweak this**, or **＋ Add a slide here** in the gap between two slides. A panel pops up with a ready-to-paste prompt (and a one-line clone command for first timers). Copy it, paste it into your own Claude Code running in a clone of this repo, and describe what you want. It builds the slide, previews it, screenshots it, and opens a PR for JM to review. Tweak and add use different prompts, because they're different jobs. See `FLOW.md` for how the whole thing works.
+
+**By hand, if you'd rather.** Point your Claude Code at the repo and talk to it:
 
 1. Clone the repo and open your Claude Code in it.
 2. Say: ***"Read ONBOARDING.md and let's design a slide."***
 3. Describe what you want in plain English. It builds the slide, runs `./deck preview`, and you watch it at `http://localhost:5300` (refresh after each change). Refine together.
-4. When you're happy, say **"ship it."** It runs `./deck publish "…"`, which opens a pull request. JM reviews and merges; the gallery updates within ~30 seconds.
+4. When you're happy, say **"ship it."** It screenshots the slide and runs `./deck publish "…"`, which opens a pull request with the screenshot in it. JM reviews and merges; the gallery updates within ~30 seconds.
 
 Everything is driven by one tool — you rarely type these yourself:
 
 ```
 ./deck new C4 "Dark workbook" "Dark · formula bar"   # start a new option
 ./deck preview                                        # see the gallery locally
-./deck publish "made slide C dark"                    # ship it as a PR
+./deck publish "made slide C dark"                    # ship it as a PR (+ screenshot)
+./deck shot A1-statement-pillars.html                # screenshot a slide into previews/
 ```
 
-`ONBOARDING.md` is the guide Claude Code follows; `DESIGN.md` is the full design language; `CLAUDE.md` is the short repo contract.
+`FLOW.md` explains the contribution flow; `ONBOARDING.md` is the guide Claude Code follows; `DESIGN.md` is the full design language; `CLAUDE.md` is the short repo contract.
 
 ## Layout
 ```
-deck                the one tool: new / preview / publish / check
+deck                the one tool: new / preview / publish / check / shot
 ONBOARDING.md       the human + Claude Code loop (start here)
+FLOW.md             how the "tweak / add a slide" contribution flow works
 index.html          gallery — renders the deck straight from slides.json
 slides.json         the manifest: the deck running order + the open options
 theme.js            color + font tokens   ── shared design source of truth
@@ -51,6 +57,7 @@ CLAUDE.md           contract for Claude Code
 scripts/deckkit.py  helper behind ./deck (new, check)
 A1-…D3-*.html       the twelve current options for the open slots
 context/            the decided slides around them (sanitized)
+previews/           slide screenshots attached to PRs (auto-made on publish)
 assets/             corner-mark.svg (the only shared asset)
 ```
 

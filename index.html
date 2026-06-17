@@ -3,53 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Primer — Platform Slide Options</title>
+<title>Primer — Sales deck, open slides in place</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#0E1B17; --panel:#152A24; --teal:#2C8B7B; --teal2:#7ECFC5; --line:rgba(255,255,255,0.12); --ink:#F4F7F5; --muted:#9DB3AC; }
+  :root { --bg:#0E1B17; --panel:#152A24; --panel2:#0F211B; --teal:#2C8B7B; --teal2:#7ECFC5; --line:rgba(255,255,255,0.12); --ink:#F4F7F5; --muted:#9DB3AC; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:'Inter',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; }
-  .wrap { max-width:1340px; margin:0 auto; padding:44px 32px 90px; }
+  .wrap { max-width:1120px; margin:0 auto; padding:44px 32px 96px; }
   a { color:var(--teal2); }
   .eyebrow { color:var(--teal2); font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:600; }
-  h1 { font-family:'Playfair Display',Georgia,serif; font-weight:700; font-size:42px; margin:8px 0 8px; letter-spacing:-0.01em; }
-  .sub { color:var(--muted); font-size:15.5px; max-width:860px; line-height:1.55; }
-  .toolbar { margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-weight:700; font-size:42px; margin:8px 0 10px; letter-spacing:-0.01em; }
+  .sub { color:var(--muted); font-size:15.5px; max-width:780px; line-height:1.6; }
+  .legend { margin-top:16px; display:flex; gap:22px; flex-wrap:wrap; font-size:13px; color:var(--muted); }
+  .legend span { display:inline-flex; align-items:center; gap:8px; }
+  .legend i { width:13px; height:13px; border-radius:999px; display:inline-block; }
+  .legend i.open { background:var(--teal); box-shadow:0 0 0 3px rgba(44,139,123,0.28); }
+  .legend i.set  { background:transparent; border:2px solid var(--muted); }
+  .toolbar { margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; }
   .toolbar a { display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:500; color:var(--ink); text-decoration:none; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 13px; }
   .toolbar a:hover { border-color:var(--teal); }
-  .slide-sec { margin-top:46px; }
-  .slide-head { display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line); padding-bottom:11px; margin-bottom:20px; flex-wrap:wrap; }
-  .slide-head h2 { font-family:'Playfair Display',serif; font-size:25px; margin:0; font-weight:700; }
-  .slide-head .desc { color:var(--muted); font-size:14px; }
-  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  @media (max-width:1000px){ .grid { grid-template-columns:1fr; max-width:560px; } }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; transition:border-color .15s, transform .15s; }
-  .card:hover { border-color:var(--teal); transform:translateY(-2px); }
-  .card.rec { border-color:var(--teal); box-shadow:0 0 0 1px var(--teal); }
-  .card-lab { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:13px 15px 11px; }
-  .card-lab .name { font-weight:600; font-size:14.5px; line-height:1.25; }
-  .card-lab .name small { display:block; color:var(--muted); font-weight:400; font-size:12px; margin-top:3px; }
-  .badge { font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#06251E; background:var(--teal2); padding:3px 8px; border-radius:999px; white-space:nowrap; margin-top:1px; }
-  a.thumb { display:block; position:relative; aspect-ratio:1280/720; overflow:hidden; background:#fff; border-top:1px solid var(--line); }
-  a.thumb iframe { position:absolute; top:0; left:0; width:1280px; height:720px; border:0; transform-origin:top left; pointer-events:none; }
-  a.thumb .open { position:absolute; right:9px; bottom:9px; background:rgba(8,20,16,.82); color:#fff; font-size:11px; font-weight:500; padding:4px 9px; border-radius:6px; opacity:0; transition:opacity .15s; }
-  a.thumb:hover .open { opacity:1; }
-  .vote { font-size:11.5px; color:var(--muted); padding:9px 15px 13px; border-top:1px solid var(--line); }
-  .vote code { color:var(--teal2); }
-  footer { margin-top:58px; color:var(--muted); font-size:13.5px; border-top:1px solid var(--line); padding-top:22px; line-height:1.65; }
+
+  /* ── running deck: a vertical spine with one row per slide ── */
+  .flow { margin-top:40px; }
+  .row { display:grid; grid-template-columns:64px 1fr; }
+  .spine { position:relative; }
+  .spine .line { position:absolute; left:30px; top:0; bottom:0; width:2px; background:var(--line); }
+  .row:first-child .spine .line { top:22px; }
+  .row:last-child  .spine .line { bottom:auto; height:22px; }
+  .spine .dot { position:absolute; left:18px; top:11px; width:26px; height:26px; border-radius:999px; background:var(--bg); border:2px solid var(--muted); color:var(--muted); font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .row.open .spine .dot { border-color:var(--teal); color:#06251E; background:var(--teal); box-shadow:0 0 0 4px rgba(44,139,123,0.22); }
+
+  .content { padding:6px 0 42px 8px; min-width:0; }
+  .rowhead { display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; margin-bottom:11px; }
+  .rowhead .rtitle { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; }
+  .rtag { font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 9px; border-radius:999px; }
+  .rtag.set  { color:var(--muted); border:1px solid var(--line); }
+  .rtag.open { color:#06251E; background:var(--teal2); }
+  .rowhead .rnote { color:var(--muted); font-size:13.5px; }
+
+  .frame { position:relative; aspect-ratio:1280/720; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:12px; }
+  .row.open .frame { border-color:var(--teal); box-shadow:0 0 0 1px var(--teal); }
+  .frame iframe { position:absolute; top:0; left:0; width:1280px; height:720px; border:0; transform-origin:top left; pointer-events:none; }
+  .frame .open-fs { position:absolute; right:10px; bottom:10px; background:rgba(8,20,16,.82); color:#fff; font-size:11px; font-weight:500; padding:4px 10px; border-radius:6px; opacity:0; transition:opacity .15s; text-decoration:none; pointer-events:auto; }
+  .frame:hover .open-fs { opacity:1; }
+
+  /* decision controls under the frame */
+  .controls { display:flex; gap:8px; flex-wrap:wrap; margin-top:13px; }
+  .pill { display:flex; flex-direction:column; align-items:flex-start; gap:1px; background:var(--panel); border:1px solid var(--line); border-radius:9px; padding:7px 13px; cursor:pointer; color:var(--ink); font:inherit; text-align:left; transition:border-color .12s, background .12s; }
+  .pill:hover { border-color:var(--teal); }
+  .pill .code { font-size:13.5px; font-weight:700; display:flex; align-items:center; gap:5px; }
+  .pill small { color:var(--muted); font-size:11.5px; font-weight:400; }
+  .pill .star { color:var(--teal2); font-size:11px; }
+  .pill.on { background:#16352D; border-color:var(--teal2); }
+  .pill.on .code { color:var(--teal2); }
+  .votehint { margin-top:11px; font-size:12.5px; color:var(--ink); }
+  .votehint .muted { color:var(--muted); }
+  .votehint code { color:var(--teal2); }
+
+  footer { margin-top:30px; color:var(--muted); font-size:13.5px; border-top:1px solid var(--line); padding-top:24px; line-height:1.7; }
   footer code { color:var(--teal2); background:rgba(126,207,197,0.1); padding:1px 6px; border-radius:4px; font-size:12.5px; }
   footer b { color:var(--ink); font-weight:600; }
   .err { color:#E0A0A0; font-size:14px; margin-top:24px; }
+
+  @media (max-width:720px){
+    .wrap { padding:32px 18px 70px; }
+    h1 { font-size:32px; }
+    .row { grid-template-columns:40px 1fr; }
+    .spine .line { left:18px; } .spine .dot { left:6px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="eyebrow">Primer · Sales deck</div>
-    <h1>Platform slide options</h1>
-    <p class="sub">Four new slides to replace the old "How Boardwalk" step — <strong>Overview</strong>, <strong>Flow</strong>, the <strong>Input sheet</strong>, and the <strong>Intelligence</strong>. Three design options each. Click any thumbnail to open it full-screen at 1280×720 (true deck size). The option outlined in teal is the current recommendation for that slide.</p>
+    <h1>The deck, with the open slides in place</h1>
+    <p class="sub">This is the full sales deck in running order. Four slides are still open — they replace the old "How Boardwalk" step. Each open slide sits exactly where it'll live, so you can judge an option against what comes before and after it. Flip between the options right inside the deck, then vote. The slides around them are decided and shown for context (lightly sanitized for this public link).</p>
+    <div class="legend">
+      <span><i class="open"></i> Open — pick one</span>
+      <span><i class="set"></i> Decided — shown for context</span>
+    </div>
     <div class="toolbar">
       <a href="https://github.com/PropRise/primer-deck-options" target="_blank" rel="noopener">↗ Repo</a>
       <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">🗳 Vote / discuss</a>
@@ -57,41 +92,106 @@
       <a href="https://github.com/PropRise/primer-deck-options/blob/main/README.md" target="_blank" rel="noopener">＋ Add your own option</a>
     </div>
   </header>
-  <div id="root"></div>
+  <div id="root" class="flow"></div>
   <footer id="foot"></footer>
 </div>
+
 <script>
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function fixedRow(item, pos){
+  const row = document.createElement('div'); row.className = 'row';
+  row.innerHTML =
+    `<div class="spine"><span class="line"></span><span class="dot">${pos}</span></div>` +
+    `<div class="content">` +
+      `<div class="rowhead"><span class="rtitle">${esc(item.title)}</span><span class="rtag set">Decided</span><span class="rnote">${esc(item.note)}</span></div>` +
+      `<div class="frame">` +
+        `<iframe src="${esc(item.file)}" scrolling="no" loading="lazy" title="${esc(item.title)}"></iframe>` +
+        `<a class="open-fs" href="${esc(item.file)}" target="_blank" rel="noopener">Open ↗</a>` +
+      `</div>` +
+    `</div>`;
+  return row;
+}
+
+function voteLine(o, letter){
+  return `Showing <b>${esc(o.code)} · ${esc(o.name)}</b>. ` +
+    `<span class="muted">To vote, 👍 the <code>${esc(o.code)}</code> comment in the slide-${esc(letter)} issue.</span>`;
+}
+
+function decisionRow(s, pos){
+  const opts = s.options || [];
+  const active = opts.find(o => o.recommended) || opts[0] || {};
+  const L = s.slide;
+  const row = document.createElement('div'); row.className = 'row open';
+  row.innerHTML =
+    `<div class="spine"><span class="line"></span><span class="dot">${pos}</span></div>` +
+    `<div class="content">` +
+      `<div class="rowhead"><span class="rtitle">${esc(s.title)}</span><span class="rtag open">Open · pick one of ${opts.length}</span><span class="rnote">${esc(s.desc)}</span></div>` +
+      `<div class="frame">` +
+        `<iframe id="f-${esc(L)}" src="${esc(active.file)}" scrolling="no" loading="lazy" title="${esc(active.code)}"></iframe>` +
+        `<a class="open-fs" id="fs-${esc(L)}" href="${esc(active.file)}" target="_blank" rel="noopener">Open ↗</a>` +
+      `</div>` +
+      `<div class="controls" id="ctl-${esc(L)}">` +
+        opts.map(o =>
+          `<button class="pill${o === active ? ' on' : ''}" data-slide="${esc(L)}" data-file="${esc(o.file)}" data-code="${esc(o.code)}" data-name="${esc(o.name)}">` +
+            `<span class="code">${esc(o.code)}${o.recommended ? ' <span class="star">★ rec</span>' : ''}</span>` +
+            `<small>${esc(o.name)}</small>` +
+          `</button>`).join('') +
+      `</div>` +
+      `<div class="votehint" id="vote-${esc(L)}">${voteLine(active, L)}</div>` +
+    `</div>`;
+  return row;
+}
+
 function render(data){
   const root = document.getElementById('root');
-  (data.slides || []).forEach(s => {
-    const sec = document.createElement('div'); sec.className = 'slide-sec';
-    sec.innerHTML = `<div class="slide-head"><h2>Slide ${s.slide} — ${s.title}</h2><span class="desc">${s.desc||''}</span></div>`;
-    const grid = document.createElement('div'); grid.className = 'grid';
-    (s.options || []).forEach(o => {
-      const card = document.createElement('div'); card.className = 'card' + (o.recommended ? ' rec' : '');
-      card.innerHTML =
-        `<div class="card-lab"><div class="name">${o.code} · ${o.name}<small>${o.sub||''}</small></div>${o.recommended ? '<span class="badge">Recommended</span>' : ''}</div>` +
-        `<a class="thumb" href="${o.file}" target="_blank" rel="noopener">` +
-        `<iframe src="${o.file}" scrolling="no" loading="lazy" title="${o.code}"></iframe>` +
-        `<span class="open">Open full-screen ↗</span></a>` +
-        `<div class="vote">Vote: 👍 the <code>${o.code}</code> comment in the slide-${s.slide} issue</div>`;
-      grid.appendChild(card);
-    });
-    sec.appendChild(grid); root.appendChild(sec);
+  const byLetter = {};
+  (data.slides || []).forEach(s => { byLetter[s.slide] = s; });
+  const deck = data.deck || [];
+
+  if (!deck.length){
+    root.innerHTML = `<p class="err">No <code>deck</code> array in <code>slides.json</code> — nothing to lay out.</p>`;
+    return;
+  }
+
+  deck.forEach((item, i) => {
+    const pos = i + 1;
+    if (item.type === 'decision'){
+      const s = byLetter[item.slide];
+      if (s) root.appendChild(decisionRow(s, pos));
+    } else {
+      root.appendChild(fixedRow(item, pos));
+    }
   });
+
   const arc = (data.recommendedArc || []).join(' → ');
   document.getElementById('foot').innerHTML =
-    (arc ? `Current recommended arc: <code>${arc}</code>.<br>` : '') +
-    `<b>To vote</b> — open the <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">issues</a> and 👍 the option you like for each slide. ` +
-    `<b>To propose a new option</b> — copy <code>slide-template.html</code>, build it (your own Claude Code can follow <code>DESIGN.md</code>), add one line to <code>slides.json</code>, and open a PR. It shows up here automatically.`;
+    (arc ? `Current recommended arc for the four open slides: <code>${esc(arc)}</code>.<br>` : '') +
+    `<b>To vote</b> — flip to the option you like on each open slide, then 👍 its comment in the matching <a href="https://github.com/PropRise/primer-deck-options/issues" target="_blank" rel="noopener">slide issue</a>. ` +
+    `<b>To propose a new option</b> — copy <code>slide-template.html</code>, build it (your Claude Code can follow <code>DESIGN.md</code>), add one line to <code>slides.json</code>, and open a PR. It appears here automatically.`;
   rescale();
 }
+
 function rescale(){
-  document.querySelectorAll('a.thumb').forEach(t => {
-    const f = t.querySelector('iframe');
-    if (f) f.style.transform = 'scale(' + (t.clientWidth / 1280) + ')';
+  document.querySelectorAll('.frame').forEach(fr => {
+    const f = fr.querySelector('iframe');
+    if (f) f.style.transform = 'scale(' + (fr.clientWidth / 1280) + ')';
   });
 }
+
+// audition in place: clicking a pill swaps the slide's iframe without leaving the row
+document.addEventListener('click', e => {
+  const pill = e.target.closest('.pill');
+  if (!pill) return;
+  const L = pill.dataset.slide;
+  document.querySelectorAll('#ctl-' + L + ' .pill').forEach(p => p.classList.toggle('on', p === pill));
+  const f = document.getElementById('f-' + L); if (f && f.getAttribute('src') !== pill.dataset.file) f.src = pill.dataset.file;
+  const fs = document.getElementById('fs-' + L); if (fs) fs.href = pill.dataset.file;
+  const vote = document.getElementById('vote-' + L);
+  if (vote) vote.innerHTML = voteLine({ code: pill.dataset.code, name: pill.dataset.name }, L);
+  rescale();
+});
+
 window.addEventListener('resize', rescale);
 window.addEventListener('load', rescale);
 document.addEventListener('load', e => { if (e.target.tagName === 'IFRAME') rescale(); }, true);
@@ -102,7 +202,7 @@ fetch('slides.json', { cache: 'no-store' })
   .then(render)
   .catch(err => {
     document.getElementById('root').innerHTML =
-      `<p class="err">Couldn't load <code>slides.json</code> (${err.message}). Open this page through a web server (e.g. the GitHub Pages link), not as a <code>file://</code> path.</p>`;
+      `<p class="err">Couldn't load <code>slides.json</code> (${esc(err.message)}). Open this page through a web server (e.g. the GitHub Pages link), not as a <code>file://</code> path.</p>`;
   });
 </script>
 </body>

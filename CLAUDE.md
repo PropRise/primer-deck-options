@@ -24,12 +24,23 @@ One tool does each step. Prefer it over running git / servers / JSON edits by ha
 - **Preview:** `./deck preview` serves over http so the manifest loads (opening `index.html` as a `file://` path won't).
 - **Ship:** `./deck publish "…"` opens a PR. Don't commit slide changes straight to `main`.
 
+## How the gallery is laid out — `deck[]` + `context/`
+The gallery shows the **whole deck in running order**, not a loose grid of options. `slides.json` drives it with two parts:
+
+- **`deck[]`** — the running order. Each entry is either `{ "type": "fixed", "file": "context/…html", … }` (a decided slide) or `{ "type": "decision", "slide": "A" }` (an open slot that renders the options from `slides[]`). Edit `deck[]` to reorder the deck or move where an open slot sits.
+- **`slides[]`** — the options for each open slot (A–D), unchanged from before.
+
+**`context/`** holds the decided slides that frame the open ones (cover, context, results, pricing). They use the same `theme.js` / `deck.css` via relative paths (`../theme.js`) and live in a subdir so `./deck check` doesn't mistake them for stray options.
+
+**Sanitization — the repo is public, so context slides must not leak customer data.** When you add or edit anything in `context/`: real dollar figures become `$`, real firm names become a generic stand-in (e.g. "Acme Storage"), and any headshot becomes a neutral tile. Keep the quotes, figures, and layout exactly as the real slide — obscure only the identifying details. The open slides (A–D) already use a fictional sample deal ("The Jasmine," Dallas), so they need no sanitizing.
+
 ## Hard rules
 - One file = one option. Never edit another option's file to make yours work.
 - The 1280×720 size is fixed — the deck is rebuilt 1:1 in PowerPoint against it.
 - Keep the sample-deal numbers consistent with `DESIGN.md` so figures match across slides.
 - Follow the banned-copy and banned-visual lists in `DESIGN.md` (no staccato fragments, no rhetorical Q+A, no accent lines under titles, etc.).
 - The only shared asset is `assets/corner-mark.svg`. Don't add binary assets unless a slide genuinely needs one.
+- Never put real customer names, dollar figures, or photos in `context/` — sanitize as above.
 
 ## What not to touch
 - `theme.js` / `deck.css` — shared design source of truth. Change these only in a dedicated PR that's explicitly about the design system, never as a side effect of a new slide.

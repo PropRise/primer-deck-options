@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+# ─────────────────────────────────────────────────────────────────────────────
+#  deck — the one tool for working on Primer slide options.
+#
+#    ./deck new C4 "Dark workbook" "Dark · formula bar"   start a new option
+#    ./deck preview                                       see the gallery locally
+#    ./deck publish "made slide C dark"                   ship it (opens a PR)
+#    ./deck check                                         is everything wired up?
+#    ./deck stop                                          stop the local preview
+#
+#  You rarely run these by hand — tell your Claude Code what you want and it
+#  drives this for you. Full guide: ONBOARDING.md.
+# ─────────────────────────────────────────────────────────────────────────────
+set -uo pipefail
+cd "$(dirname "$0")"
+
+PORT=5300
+OWNER_REPO="jeanmichaeldiei/primer-deck-options"
+LIVE="https://jeanmichaeldiei.github.io/primer-deck-options"
+B="\033[1m"; D="\033[2m"; G="\033[32m"; R="\033[31m"; E="\033[0m"
+
+usage() {
+  cat <<EOF
+$(printf "${B}deck${E}") — work on Primer slide options
+
+  $(printf "${B}./deck new${E}") CODE "Name" "one-line description"
+      Start a new option, e.g.  ./deck new C4 "Dark workbook" "Dark · formula bar"
+      Creates the file and lists it in the gallery. Then edit the file.
+
+  $(printf "${B}./deck preview${E}")
+      Run the gallery at http://localhost:$PORT/ . Refresh after each change.
+
+  $(printf "${B}./deck publish${E}") "what you changed"
+      Ship your work as a pull request for review.
+
+  $(printf "${B}./deck check${E}")
+      Confirm every option is wired up (run automatically before publish).
+
+  $(printf "${B}./deck stop${E}")
+      Stop the local preview.
+
+Look (colors, type, components, the sample deal): DESIGN.md
+Working with Claude Code on this repo: ONBOARDING.md
+EOF
+}
+
+free_port() { command -v lsof >/dev/null 2>&1 && lsof -ti tcp:$PORT 2>/dev/null | xargs kill 2>/dev/null; true; }
+
+cmd="${1:-help}"; shift 2>/dev/null || true
+
+case "$cmd" in
+  preview)
+    free_port
+    nohup python3 -m http.server "$PORT" >/tmp/primer-deck-options.server.log 2>&1 &
+    sleep 1
+    printf "${G}Gallery running${E} →  http://localhost:$PORT/\n"
+    printf "${D}Refresh the page after each change. Stop with: ./deck stop${E}\n"
+    ;;
+
+  stop)
+    free_port
+    echo "Preview stopped."
+    ;;
+
+  new)
+    python3 scripts/deckkit.py new "$@"
+    ;;
+
+  check)
+    python3 scripts/deckkit.py check
+    ;;
+
+  publish)
+    msg="${1:-}"
+    if [ -z "$msg" ]; then
+      printf "${R}Say what you changed:${E}  ./deck publish \"made slide C dark\"\n"; exit 1
+    fi
+    python3 scripts/deckkit.py check || { printf "${R}Fix the above before publishing.${E}\n"; exit 1; }
+
+    if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git status --porcelain)" ]; then :; else
+      printf "${R}Nothing to publish — no changes since the last commit.${E}\n"; exit 1
+    fi
+
+    # option/ when a slide changed, chore/ otherwise
+    if git status --porcelain | grep -qE '([A-Z][0-9]+-.*\.html|slides\.json)'; then prefix=option; else prefix=chore; fi
+    slug=$(printf '%s' "$msg" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-' | sed 's/^-//; s/-$//' | cut -c1-40)
+    [ -z "$slug" ] && slug="update"
+    branch="$prefix/$slug"
+    if git rev-parse --verify --quiet "$branch" >/dev/null; then branch="$branch-$(date +%H%M%S)"; fi
+
+    git checkout -b "$branch" >/dev/null 2>&1 || { printf "${R}Couldn't create branch $branch${E}\n"; exit 1; }
+    git add -A
+    git commit -q -m "$msg" -m "Co-Authored-By: Claude <noreply@anthropic.com>"
+    if ! git push -u origin "$branch" >/tmp/primer-deck-options.push.log 2>&1; then
+      printf "${R}Couldn't push.${E} You may not have write access yet.\n"
+      printf "${D}Ask JM to add you as a collaborator, or fork:  gh repo fork --remote  then re-run.${E}\n"
+      cat /tmp/primer-deck-options.push.log
+      exit 1
+    fi
+    body=$(printf 'Proposed change: %s\n\nReview the diff, then merge — it goes live at %s/ within ~30s.' "$msg" "$LIVE")
+    if url=$(gh pr create --repo "$OWNER_REPO" --title "$msg" --body "$body" 2>/tmp/primer-deck-options.pr.log); then
+      printf "\n${G}✓ Pull request opened${E}\n  %s\n" "$url"
+      printf "${D}JM reviews and merges; the gallery updates automatically.${E}\n"
+    else
+      printf "${R}Pushed the branch, but couldn't open the PR automatically.${E}\n"
+      cat /tmp/primer-deck-options.pr.log
+      printf "${D}Open it here: https://github.com/%s/pull/new/%s${E}\n" "$OWNER_REPO" "$branch"
+      exit 1
+    fi
+    ;;
+
+  help|--help|-h|"") usage ;;
+  *) printf "${R}Unknown command: %s${E}\n\n" "$cmd"; usage; exit 1 ;;
+esac

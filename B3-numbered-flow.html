@@ -38,7 +38,7 @@
 
   <!-- Two input cards side by side -->
   <!-- Card: Deal documents -->
-  <div class="b left-[152px] top-[196px] w-[272px] bg-white border border-line rounded-[2px] px-4 py-3 shadow-sm">
+  <div class="b left-[152px] top-[196px] w-[272px] h-[76px] bg-white border border-line rounded-[2px] px-4 shadow-sm flex items-center">
     <span class="absolute left-0 top-0 h-full w-[5px] bg-tealbar rounded-l"></span>
     <div class="pl-1">
       <div class="text-[14px] font-bold text-ink">Deal documents</div>
@@ -47,7 +47,7 @@
   </div>
 
   <!-- Card: Research agents -->
-  <div class="b left-[442px] top-[196px] w-[272px] bg-white border border-line rounded-[2px] px-4 py-3 shadow-sm">
+  <div class="b left-[442px] top-[196px] w-[272px] h-[76px] bg-white border border-line rounded-[2px] px-4 shadow-sm flex items-center">
     <span class="absolute left-0 top-0 h-full w-[5px] bg-tealbar rounded-l"></span>
     <div class="pl-1">
       <div class="text-[14px] font-bold text-ink">Research agents</div>
@@ -55,42 +55,29 @@
     </div>
   </div>
 
-  <!-- ── CONNECTOR: Layer 1 → Layer 2 ─────────────────────── -->
-  <svg class="b left-0 top-0 w-full h-full" style="pointer-events:none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <marker id="arr3" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
-        <polygon points="0 0, 9 3.5, 0 7" fill="#2C8B7B"/>
-      </marker>
-    </defs>
-    <!-- Down arrows between layers, centered at the spine x=115 -->
-    <line x1="115" y1="280" x2="115" y2="318" stroke="#2C8B7B" stroke-width="2" marker-end="url(#arr3)"/>
-    <!-- Horizontal connectors from cards to spine for layer 1 -->
-    <line x1="152" y1="240" x2="115" y2="278" stroke="#D8DDD9" stroke-width="1.2"/>
-    <line x1="442" y1="240" x2="115" y2="278" stroke="#D8DDD9" stroke-width="1.2"/>
-    <!-- Down arrow between layer 2 and layer 3 -->
-    <line x1="115" y1="508" x2="115" y2="524" stroke="#2C8B7B" stroke-width="2" marker-end="url(#arr3)"/>
-  </svg>
+  <!-- Flow is carried by the numbered bubbles on the gradient spine; no extra arrows needed. -->
 
   <!-- ── LAYER 2: PRIMER ────────────────────────────────────── -->
   <!-- Layer 2 full-width block (big, teal-bordered) -->
-  <div class="b left-[152px] top-[330px] w-[1060px] bg-tint border border-teal/40 rounded-[4px] overflow-hidden" style="height:170px;">
+  <div class="b left-[152px] top-[330px] w-[1060px] bg-tint border border-teal/40 rounded-[4px] overflow-hidden" style="height:192px;">
     <span class="absolute left-0 top-0 h-full w-[6px] bg-teal rounded-l"></span>
     <div class="pl-6 pr-8 pt-4 pb-4 h-full flex items-start gap-0">
       <!-- Left: Primer title + verbs -->
-      <div class="flex-shrink-0 w-[300px]">
+      <div class="flex-shrink-0 w-[320px]">
         <div class="text-[17px] font-bold text-teal">Primer</div>
-        <div class="mt-2.5 space-y-1.5">
-          <div class="flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="#2C8B7B" stroke-width="1.2"/><path d="M4 7l2.2 2.2 3.8-4" stroke="#2C8B7B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="text-[13px] font-semibold text-body">Reads every document and source</span>
+        <div class="text-[11.5px] text-muted mt-0.5 mb-2.5 leading-snug">A reading agent that works across the whole deal room.</div>
+        <div class="space-y-2">
+          <div class="flex items-start gap-2">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="flex-shrink-0 mt-[2px]"><circle cx="7" cy="7" r="6.5" stroke="#2C8B7B" stroke-width="1.2"/><path d="M4 7l2.2 2.2 3.8-4" stroke="#2C8B7B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-[13px] font-semibold text-body leading-snug">Reads across every document and source</span>
           </div>
-          <div class="flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="#2C8B7B" stroke-width="1.2"/><path d="M4 7l2.2 2.2 3.8-4" stroke="#2C8B7B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="text-[13px] font-semibold text-body">Reconciles conflicts across sources</span>
+          <div class="flex items-start gap-2">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="flex-shrink-0 mt-[2px]"><circle cx="7" cy="7" r="6.5" stroke="#2C8B7B" stroke-width="1.2"/><path d="M4 7l2.2 2.2 3.8-4" stroke="#2C8B7B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-[13px] font-semibold text-body leading-snug">Connects what no single doc states on its own</span>
           </div>
-          <div class="flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="#2C8B7B" stroke-width="1.2"/><path d="M4 7l2.2 2.2 3.8-4" stroke="#2C8B7B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="text-[13px] font-semibold text-body">Validates the numbers and flags anomalies</span>
+          <div class="flex items-start gap-2">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="flex-shrink-0 mt-[2px]"><circle cx="7" cy="7" r="6.5" stroke="#2C8B7B" stroke-width="1.2"/><path d="M4 7l2.2 2.2 3.8-4" stroke="#2C8B7B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-[13px] font-semibold text-body leading-snug">Reconciles conflicts, validates, flags anomalies</span>
           </div>
         </div>
       </div>

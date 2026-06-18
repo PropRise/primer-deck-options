@@ -6,6 +6,23 @@ The two files that enforce it: **`theme.js`** (color + font tokens) and **`deck.
 
 ---
 
+## Design principles (the vibe)
+
+These are the habits to carry into every slide. They are about taste and judgment, not exact numbers. When a choice is unclear, come back here.
+
+- **Let it breathe. Nothing touches an edge.** Every element keeps equal padding from its container on all sides, with a sensible minimum. Text never runs up against a border, a divider, or the stage edge. When something feels tight, add room before adding cleverness.
+- **Equal heights across a row.** Cards that sit side by side share one height. Align them to the row, not to their own content. Uneven card heights read as a mistake.
+- **One idea per element.** A card, a callout, or a cell makes a single point. If you are explaining two things, use two elements. Cut anything that does not help the reader understand, decide, or trust.
+- **Plain language always.** Simple words, complete sentences, no em or en dashes, no filler. See the Voice section below and `sales/knowledge/plain-writing-reference.md` in the GrowthOS repo. If you would not say it to a colleague, cut it.
+- **Lead with the customer.** It is their model, their chart of accounts, their level of detail, their process. Use "you" and "your." Make clear Primer is configured to the way they already work, set up with them.
+- **Say what is true, no more and no less.** Do not oversell: Primer runs the first pass and the model population, not the full underwrite. Do not undersell: it is not "just a reader." Match the claim to the evidence.
+- **Show, don't assert.** Prove a point with a concrete artifact: a reconciliation, a cell reference, a comp query. Real examples beat adjectives.
+- **Make the hero obvious.** The main thing on a slide should win by weight, space, or elevation, not by a louder color. Supporting elements stay quiet.
+- **Connectors carry meaning.** Every arrow or line should mean something and land cleanly. Remove stray or decorative lines. If a numbered spine already shows the order, you do not also need arrows.
+- **Replace decoration with substance.** If a box exists only to fill space, give it a real job or remove it.
+
+---
+
 ## The frame
 
 - Every slide is one `<section class="stage">` at exactly **1280 × 720**. Never change that size — the deck is rebuilt 1:1 in PowerPoint against it.

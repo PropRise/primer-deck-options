@@ -39,53 +39,63 @@
     <div class="mt-1 text-[11.5px] text-muted leading-snug">rent &amp; sales comps · tax /<br>assessor records · market data</div>
   </div>
 
-  <!-- ── SVG ARROWS: inputs → primer → outputs ────────────────── -->
+  <!-- ── SVG ARROWS: inputs → primer ──────────────────────────── -->
   <svg class="b left-0 top-0 w-full h-full" style="pointer-events:none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Arrow from Deal documents (right edge ~289px, midY ~249px) to Primer left (~487px, midY ~377px) -->
     <defs>
       <marker id="arrowTeal" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
         <polygon points="0 0, 9 3.5, 0 7" fill="#2C8B7B"/>
       </marker>
+      <marker id="arrowTealLight" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+        <polygon points="0 0, 9 3.5, 0 7" fill="#2C8B7B" opacity="0.5"/>
+      </marker>
     </defs>
-    <!-- Deal docs (right edge 289, y≈243) → Primer left-center (468, 310) -->
-    <path d="M 289 243 C 380 243 395 310 466 310" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.9"/>
-    <!-- Research agents (right edge 289, y≈394) → Primer left-center (468, 310) -->
-    <path d="M 289 394 C 380 394 395 310 466 310" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.9"/>
-    <!-- Primer right-center (812, 310) → Your Excel model (970, 286) -->
-    <path d="M 814 310 C 895 310 905 286 968 286" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.9"/>
-    <!-- Primer right-center (812, 310) → Your data warehouse (970, 454) -->
-    <path d="M 814 310 C 895 310 905 454 968 454" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.9"/>
+    <!-- Deal docs → Primer center -->
+    <path d="M 289 249 C 370 249 410 377 487 377" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <!-- Research agents → Primer center -->
+    <path d="M 289 397 C 370 397 410 377 487 377" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <!-- Primer → cited input sheet → outputs -->
+    <!-- Primer right edge ~793px → cited input sheet → Output nodes -->
+    <!-- Arrow to Your Excel model (upper right) -->
+    <path d="M 879 377 C 920 377 940 298 970 298" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <!-- Arrow to Your data warehouse (lower right) -->
+    <path d="M 879 377 C 920 377 940 466 970 466" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
   </svg>
 
-  <!-- ── PRIMER NODE (center hub — elevated, no nub) ───────────── -->
-  <div class="b left-[468px] top-[210px] w-[344px] bg-white border border-teal/40 rounded-2xl shadow-[0_8px_28px_rgba(25,60,51,0.14)] overflow-hidden" style="height:200px;">
-    <div class="px-5 pt-4 pb-3">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-[9px] h-[9px] rounded-full bg-teal flex-shrink-0"></span>
-        <div class="text-[16.5px] font-bold text-teal leading-none">Primer</div>
-      </div>
-      <div class="space-y-[8px]">
+  <!-- ── PRIMER NODE (center, large) ──────────────────────────── -->
+  <div class="b left-[487px] top-[220px] w-[306px] bg-white border-2 border-teal rounded-xl shadow-md overflow-hidden">
+    <!-- Teal nub motif -->
+    <span class="absolute left-0 top-0 h-full w-[5px] bg-tealbar rounded-l"></span>
+    <div class="pl-5 pr-4 pt-4 pb-4">
+      <div class="text-[15.5px] font-bold text-teal leading-tight mb-2.5">Primer</div>
+      <div class="space-y-2">
         <div class="flex items-start gap-2">
-          <span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span>
+          <span class="mt-[3px] w-[7px] h-[7px] rounded-full bg-teal flex-shrink-0"></span>
           <div class="text-[12.5px] text-body leading-snug">Reads every document and source</div>
         </div>
         <div class="flex items-start gap-2">
-          <span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span>
+          <span class="mt-[3px] w-[7px] h-[7px] rounded-full bg-teal flex-shrink-0"></span>
           <div class="text-[12.5px] text-body leading-snug">Reconciles conflicts across sources</div>
         </div>
         <div class="flex items-start gap-2">
-          <span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span>
-          <div class="text-[12.5px] text-body leading-snug">Validates the numbers, flags anomalies</div>
+          <span class="mt-[3px] w-[7px] h-[7px] rounded-full bg-teal flex-shrink-0"></span>
+          <div class="text-[12.5px] text-body leading-snug">Validates the numbers and flags anomalies</div>
         </div>
         <div class="flex items-start gap-2">
-          <span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span>
-          <div class="text-[12.5px] text-body leading-snug">Maps it into your model, cell by cell</div>
+          <span class="mt-[3px] w-[7px] h-[7px] rounded-full bg-teal flex-shrink-0"></span>
+          <div class="text-[12.5px] text-body leading-snug">Writes a structured, cited input sheet</div>
         </div>
       </div>
+      <!-- "never the broker number" callout pill -->
+      <div class="mt-3.5 inline-flex items-center gap-1.5 bg-tint border border-teal/30 rounded-full px-3 py-1">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4.5" stroke="#2C8B7B" stroke-width="1"/><path d="M5 3v2.5" stroke="#2C8B7B" stroke-width="1.2" stroke-linecap="round"/><circle cx="5" cy="7.2" r=".6" fill="#2C8B7B"/></svg>
+        <span class="text-[11px] font-semibold text-teal">never the broker number</span>
+      </div>
     </div>
-    <!-- Output artifact label -->
-    <div class="border-t border-line bg-tint px-5 py-2.5">
-      <div class="text-[11px] font-bold text-teal tr-107 uppercase">Produces — cited input sheet</div>
-      <div class="text-[10.5px] text-muted mt-0.5">every cell traced to its source document</div>
+    <!-- Cited input sheet label at bottom of Primer -->
+    <div class="border-t border-teal/20 bg-tint px-5 py-2.5">
+      <div class="text-[11px] font-bold text-teal tr-107 uppercase">Emits: cited input sheet</div>
+      <div class="text-[11px] text-muted mt-0.5">every cell traced to source document</div>
     </div>
   </div>
 

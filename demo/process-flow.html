@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primer Demo — Process flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="../theme.js"></script>
+<link rel="stylesheet" href="../deck.css">
+</head>
+<body class="slide-host">
+<section class="stage bg-paper text-ink">
+  <img src="../assets/corner-mark.svg" class="corner" alt="">
+
+  <div class="b left-[65.3px] top-[18.2px] eyebrow text-[18.7px] tr-179">THE PRIMER PROCESS</div>
+  <h2 class="b left-[65.3px] top-[54px] w-[1140px] title text-[40px]">Every deal runs through automation and intelligence.</h2>
+  <div class="b left-[65.3px] top-[114px] w-[1140px] text-teal text-[17px]">Automations populate your model, intelligence flags what's off, and every deal compounds into your warehouse.</div>
+
+  <!-- ── COLUMN LABELS ──────────────────────────────────────── -->
+  <div class="b left-[65px] top-[174px] w-[230px] text-center text-[11px] font-bold text-muted tr-136 uppercase">Where deals start</div>
+  <div class="b left-[487px] top-[174px] w-[306px] text-center text-[11px] font-bold text-muted tr-136 uppercase">Primer</div>
+  <div class="b left-[970px] top-[174px] w-[243px] text-center text-[11px] font-bold text-muted tr-136 uppercase">What you get back</div>
+
+  <!-- ── SVG CONNECTORS ──────────────────────────────────────── -->
+  <svg class="b left-0 top-0 w-full h-full" style="pointer-events:none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrowTeal" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+        <polygon points="0 0, 9 3.5, 0 7" fill="#2C8B7B"/>
+      </marker>
+      <marker id="arrowLoop" markerWidth="10" markerHeight="8" refX="8.5" refY="4" orient="auto">
+        <polygon points="0 0, 10 4, 0 8" fill="#408179"/>
+      </marker>
+    </defs>
+    <!-- Intake → Primer -->
+    <path d="M 295 280 C 372 280 420 305 487 305" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <path d="M 295 408 C 372 408 420 360 487 360" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <!-- Automations → Your model -->
+    <path d="M 793 268 C 882 268 905 254 970 254" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <!-- Intelligence → AI insights -->
+    <path d="M 793 386 C 882 386 905 362 970 362" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <!-- Primer (both pillars) → warehouse -->
+    <path d="M 793 410 C 882 410 905 470 970 470" stroke="#2C8B7B" stroke-width="1.8" fill="none" marker-end="url(#arrowTeal)" opacity="0.85"/>
+    <!-- Feedback loop: warehouse → back into Primer -->
+    <path d="M 1091 512 L 1091 575 Q 1091 590 1075 590 L 656 590 Q 640 590 640 575 L 640 444"
+          stroke="#408179" stroke-width="2.2" fill="none" stroke-dasharray="5 4" marker-end="url(#arrowLoop)"/>
+  </svg>
+
+  <!-- ── INTAKE NODES (left column) ───────────────────────────── -->
+  <div class="b left-[65px] top-[238px] w-[230px] bg-white border border-line rounded-xl px-4 py-3.5 shadow-sm">
+    <div class="flex items-center gap-2 mb-1">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2C8B7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      <div class="text-[14px] font-bold text-ink">Upload</div>
+    </div>
+    <div class="text-[11.5px] text-muted leading-snug">Drop in a full deal room or a single file.</div>
+  </div>
+
+  <div class="b left-[65px] top-[366px] w-[230px] bg-white border border-line rounded-xl px-4 py-3.5 shadow-sm">
+    <div class="flex items-center gap-2 mb-1">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2C8B7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+      <div class="text-[14px] font-bold text-ink">Inbox</div>
+    </div>
+    <div class="text-[11.5px] text-muted leading-snug">Forward the broker's email straight to Primer.</div>
+  </div>
+
+  <!-- ── PRIMER NODE (center, two distinct pillars) ───────────── -->
+  <div class="b left-[487px] top-[212px] w-[306px] h-[224px] bg-white border-2 border-teal rounded-xl shadow-md overflow-hidden flex flex-col">
+    <span class="absolute left-0 top-0 h-full w-[5px] bg-tealbar rounded-l z-10"></span>
+    <!-- Automations · white (the busywork, automated) -->
+    <div class="pl-5 pr-4 pt-3.5 pb-3">
+      <div class="flex items-center gap-1.5 mb-1.5">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2C8B7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="text-[12px] font-bold text-teal tr-107 uppercase">Automations</span>
+        <span class="text-[10.5px] text-muted">· does the busywork</span>
+      </div>
+      <div class="space-y-1.5 pl-[3px]">
+        <div class="flex items-start gap-2"><span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span><div class="text-[11.5px] text-body leading-snug">Populates your model from raw docs</div></div>
+        <div class="flex items-start gap-2"><span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span><div class="text-[11.5px] text-body leading-snug">Research agents fetch market &amp; tax data</div></div>
+      </div>
+    </div>
+    <!-- Intelligence · tint (the smart AI layer) -->
+    <div class="pl-5 pr-4 py-3 bg-tint border-t border-teal/25 flex-1 flex flex-col justify-center">
+      <div class="flex items-center gap-1.5 mb-1.5">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2C8B7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg>
+        <span class="text-[12px] font-bold text-teal tr-107 uppercase">Intelligence</span>
+        <span class="text-[10.5px] text-muted">· finds the issues</span>
+      </div>
+      <div class="space-y-1.5 pl-[3px]">
+        <div class="flex items-start gap-2"><span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span><div class="text-[11.5px] text-body leading-snug">Reconciles conflicts and flags anomalies</div></div>
+        <div class="flex items-start gap-2"><span class="mt-[5px] w-[6px] h-[6px] rounded-full bg-teal flex-shrink-0"></span><div class="text-[11.5px] text-body leading-snug">Scores, scenarios, and Ask Primer chat</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── OUTPUT NODES (right column) ──────────────────────────── -->
+  <!-- Your model (from Automations) -->
+  <div class="b left-[970px] top-[212px] w-[243px] bg-white border border-line rounded-xl px-4 py-3.5 shadow-sm">
+    <div class="flex items-center gap-2 mb-1">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" fill="#E6F6F3" stroke="#2C8B7B" stroke-width="1.3"/><path d="M4 5h8M4 8h8M4 11h5" stroke="#2C8B7B" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="text-[14px] font-bold text-ink">Your model</div>
+    </div>
+    <div class="text-[11.5px] text-muted leading-snug">Populated and cited, ready for your assumptions.</div>
+  </div>
+
+  <!-- AI insights (from Intelligence) -->
+  <div class="b left-[970px] top-[320px] w-[243px] bg-white border border-line rounded-xl px-4 py-3.5 shadow-sm">
+    <div class="flex items-center gap-2 mb-1">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2C8B7B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg>
+      <div class="text-[14px] font-bold text-ink">AI insights</div>
+    </div>
+    <div class="text-[11.5px] text-muted leading-snug">Anomalies, scores, and the signals worth a closer look.</div>
+  </div>
+
+  <!-- Primer data warehouse (fed by both) -->
+  <div class="b left-[970px] top-[428px] w-[243px] bg-white border border-line rounded-xl px-4 py-3.5 shadow-sm">
+    <div class="flex items-center gap-2 mb-1">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="4.5" rx="6" ry="2.5" fill="#E6F6F3" stroke="#2C8B7B" stroke-width="1.3"/><path d="M2 4.5v7c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5v-7" stroke="#2C8B7B" stroke-width="1.3"/><path d="M2 8c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5" stroke="#2C8B7B" stroke-width="1.3"/></svg>
+      <div class="text-[14px] font-bold text-ink">Primer data warehouse</div>
+    </div>
+    <div class="text-[11.5px] text-muted leading-snug">Every deal saved as a queryable comp.</div>
+  </div>
+
+  <!-- ── FEEDBACK LOOP LABEL ──────────────────────────────────── -->
+  <div class="b left-[665px] top-[565px] w-[400px] text-center flex items-center justify-center gap-1.5">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#408179" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg>
+    <span class="text-[13.5px] font-semibold text-tealbar">Past deals inform your next underwrite.</span>
+  </div>
+</section>
+</body>
+</html>
